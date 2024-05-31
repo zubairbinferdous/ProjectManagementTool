@@ -2,36 +2,55 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Designation;
+use App\Models\DesignationRoll;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use App\Models\Employee;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Descriptor\Descriptor;
 
 class homeController extends Controller
 {
     // project-area 
     public function addProject()
     {
-        $EmployeeData =  Employee::latest()->get();
-        return view("addProject.addProject", compact('EmployeeData'));
+
+        $Designation =  Designation::latest()->get();
+        return view("addProject.addProject", compact('Designation'));
     }
 
     public function addProjectData(Request $request)
     {
-        $addUserJson = json_encode($request->AddUser);
-        // dd($request->all()); 
-        Project::insertGetId([
+        // $addUserJson = json_encode($request->AddUser);
+        // dd($request->all());
+        $project = Project::create([
             'ProjectName' =>  strtoupper($request->ProjectName),
+            'ProjectStart' =>  $request->ProjectStart,
             'ProjectDescription' => $request->ProjectDescription,
             'ProjectDivisions' => strtoupper($request->ProjectDivisions),
             'ProjectDistricts' =>  strtoupper($request->ProjectDistricts),
             'ProjectUpazilas' => strtoupper($request->ProjectUpazilas),
             'TotalCapacity' => $request->TotalCapacity,
+            'status' => $request->Status,
             'CurrentWorking' => $request->CurrentWorking,
-            'AddUser' => $addUserJson
         ]);
+
+
+        $ProjectDescription = $request->DescriptionRoll;
+
+        for ($i = 0; $i < count($ProjectDescription); $i++) {
+            DesignationRoll::create([
+                'project_id' => $project->id,
+                'designation_roll_set' => $request->DescriptionRoll[$i],
+                'member' => $request->AssignMember[$i],
+            ]);
+        }
+
+
         toastr()->success('successfully project submit');
         return redirect()->back();
     }
@@ -55,7 +74,8 @@ class homeController extends Controller
 
     public function getSingleProject($id)
     {
-        $singleProject = Project::where("id", $id)->first();
+        $singleProject = Project::with('designation')->where("id", $id)->first();
+        // $DesignationRoll = DesignationRoll::where('project_id', $id)->get();
         return  $singleProject;
     }
 
@@ -64,7 +84,9 @@ class homeController extends Controller
     // employee area  
     public function addEmployees()
     {
-        return view("addEmployees.addEmployees");
+        $project =  Project::latest()->get();
+        $Designation =  Designation::latest()->get();
+        return view("addEmployees.addEmployees", compact('project', 'Designation'));
     }
 
     public function addEmployeeData(Request $request)
@@ -84,6 +106,7 @@ class homeController extends Controller
 
             Employee::insertGetId([
                 'EmployeeName' => strtoupper($request->EmployeeName),
+                'project_id' => $request->projectName,
                 'FatherName' => strtoupper($request->FatherName),
                 'DateOfBirth' => $request->DateOfBirth,
                 'BirthPlace' => strtoupper($request->BirthPlace),
@@ -116,5 +139,63 @@ class homeController extends Controller
         Employee::findOrFail($id)->delete();
         toastr()->warning('successfully delete employees ');
         return redirect()->back();
+    }
+
+    public function getSingleEmployee($id)
+    {
+        $getEmployees = Employee::with('projectData')->where('id', $id)->first();
+        return $getEmployees;
+    }
+
+    // designation 
+
+    public function designation()
+    {
+        return view('designation.addDesignation');
+    }
+
+    public function designationData(Request $request)
+    {
+        // dd($request->all());
+
+        Designation::insertGetId([
+            'designations' => strtoupper($request->designations)
+        ]);
+
+        toastr()->success('successfully designations submit');
+        return redirect()->back();
+    }
+
+    public function allDesignation()
+    {
+        $Designation =  Designation::latest()->get();
+        return view('designation.allDesignation', compact('Designation'));
+    }
+
+    // user data 
+
+    public function registerData()
+    {
+        return view('addUser.adduser');
+    }
+
+    public function registerUserData(Request $request)
+    {
+        // dd($request->all()); 
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ]);
+        toastr()->success('successfully user submit');
+        return redirect()->back();
+    }
+
+    public function alluser()
+    {
+        $user =  User::latest()->get();
+        return view('addUser.alluser', compact('user'));
     }
 }

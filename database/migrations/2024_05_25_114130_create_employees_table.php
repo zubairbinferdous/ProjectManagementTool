@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Project;
+use App\Models\Employee;
 
 return new class extends Migration
 {
@@ -13,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->string('EmployeeName');
             $table->string('FatherName');
             $table->string('profilePic');

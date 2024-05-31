@@ -5,14 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class DesignationRoll extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-
-    public function designation()
-    {
-        return $this->hasMany(DesignationRoll::class);
-    }
 }

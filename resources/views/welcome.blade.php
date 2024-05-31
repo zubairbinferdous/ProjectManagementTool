@@ -137,6 +137,26 @@
                         <span class="menu-header-text">All Area Pages</span>
                     </li>
                     <!-- Dashboards -->
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards"> Designation Area</div>
+
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('addDesignation') }}" class="menu-link">
+                                    <div data-i18n="Email">Add Designation </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href=" {{ route('allDesignation') }} " class="menu-link">
+                                    <div data-i18n="Email">All Designation </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -175,6 +195,26 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards">User Area</div>
+
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('registerData') }}" class="menu-link">
+                                    <div data-i18n="Email">Add User </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href=" {{ route('alluser') }} " class="menu-link">
+                                    <div data-i18n="Email">All User </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
 
             </aside>
@@ -206,8 +246,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block">{{ Auth::User()->name }}</span>
+                                                    <small class="text-muted">{{ Auth::User()->email }}</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -215,10 +255,17 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
-                                    <li style="padding-bottom: 20px">
-                                        <a class="dropdown-item" href="">
+                                    <li style="">
+                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <i class="ti ti-user-check me-2 ti-sm"></i>
-                                            <span class="align-middle">My Profile</span>
+                                            <span class="align-middle">Profile Page</span>
+                                        </a>
+                                    </li>
+
+                                    <li style="padding-bottom: 20px">
+                                        <a class="dropdown-item" href="{{ url('/dashboard') }}">
+                                            <i class="ti ti-user-check me-2 ti-sm"></i>
+                                            <span class="align-middle">Home Page</span>
                                         </a>
                                     </li>
 
@@ -289,6 +336,7 @@
                                 </div>
                             </div> --}}
                         </div>
+
                     </footer>
                     <!-- / Footer -->
 
@@ -306,7 +354,7 @@
         <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
-
+    @yield('script')
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('/assets/vendor/libs/jquery/jquery.js') }}"></script>
@@ -414,6 +462,8 @@
             });
         });
     </script>
+
+
 </body>
 
 </html>

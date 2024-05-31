@@ -29,6 +29,17 @@
                                 required="">
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label" for="collapsible-state6">Project name</label>
+                            <select id="collapsible-state6" class="select2 form-select" data-allow-clear="true"
+                                name="projectName">
+                                <option value="">Select</option>
+                                @foreach ($project as $item)
+                                    <option value="{{ $item->id }}">{{ $item->ProjectName }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
 
                         <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Employee Date Of Birth</label>
@@ -62,11 +73,15 @@
                                 placeholder="Employee Nid Number" name="NidNumber">
                         </div>
 
-
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname"> Employee Designation</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Employee Designation" name="Designation">
+                            <label class="form-label" for="collapsible-state6">Employee Description </label>
+                            <select id="collapsible-state6" required class="select2 form-select" data-allow-clear="true"
+                                name="Designation">
+                                <option value="">Select</option>
+                                @foreach ($Designation as $item)
+                                    <option value="{{ $item->designations }}">{{ $item->designations }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="mb-3">

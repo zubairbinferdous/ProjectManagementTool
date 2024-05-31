@@ -30,10 +30,8 @@
             <thead>
                 <tr>
                     <th id="">#</th>
-                    <th id="" class="col-md-4 col-xs-5">Employee Name</th>
-                    <th id="" class="col-md-3 col-xs-4">Phone Number</th>
-                    <th id="" class="col-md-3 col-xs-3">Designation</th>
-                    <th id="" class="col-md-2 col-xs-3">Action</th>
+                    <th id="" class="col-md-6 col-xs-5">Designations Name</th>
+                    <th id="" class="col-md-4 col-xs-3">Action</th>
                 </tr>
                 <tr class="warning no-result">
                     <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -41,12 +39,10 @@
             </thead>
             <tbody>
 
-                @foreach ($Employee as $key => $item)
+                @foreach ($Designation as $key => $item)
                     <tr>
                         <th scope="row"> {{ $key + 1 }} </th>
-                        <td><a href="">{{ $item->EmployeeName }}</a></td>
-                        <td>{{ $item->PhoneNumber }}</td>
-                        <td>{{ $item->Designation }}</td>
+                        <td><a href="">{{ $item->designations }}</a></td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"
@@ -54,11 +50,10 @@
                                     <i class="ti ti-dots-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu" style="">
-                                    <a class="dropdown-item" href="{{ route('getSingleEmployee', $item->id) }}"><i
-                                            class="ti ti-pencil me-1"></i>
+                                    <a class="dropdown-item" href=""><i class="ti ti-pencil me-1"></i>
                                         Edit</a>
-                                    <a class="dropdown-item" href="{{ route('getEmployeeData', $item->id) }}"><i
-                                            class="ti ti-trash me-1"></i>Delete</a>
+                                    <a class="dropdown-item" href=""><i class="ti ti-trash me-1"></i>
+                                        Delete</a>
                                 </div>
                             </div>
                         </td>

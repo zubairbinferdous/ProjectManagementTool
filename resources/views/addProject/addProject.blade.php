@@ -16,6 +16,12 @@
                                 placeholder="Project Name" name="ProjectName">
                         </div>
 
+                        <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Project Start Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                placeholder="YYYY-MM-DD" readonly="readonly" name="ProjectStart" placeholder="YYYY-MM-DD">
+                        </div> <br>
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-message">Project Description</label>
                             <textarea id="basic-default-message" class="form-control" rows="6" placeholder="Project Description"
@@ -131,14 +137,72 @@
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state3"> Project Status </label>
                             <select id="collapsible-state3" class="select2 form-select" data-allow-clear="true"
-                                name="ProjectDivisions">
+                                name="Status">
                                 <option value="">Select</option>
-                                <option value="Start">Start</option>
+                                <option value="Active">Active</option>
                                 <option value="Close">Close</option>
                             </select>
                         </div>
 
-                        <div class="mb-3">
+                        <div id="">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        id="add_field">Add Designation Field
+                                    </button>
+                                </div>
+                                <div class="col-md-6"></div>
+                                <div class="col-md-4"></div>
+
+
+                                <div class="col-md-6">
+                                    <label class="form-label" for="collapsible-state3"> Description </label>
+                                    <select id="collapsible-state3" required class=" form-select" data-allow-clear="true"
+                                        name="DescriptionRoll[]">
+                                        <option value="">Select</option>
+                                        @foreach ($Designation as $item)
+                                            <option value="{{ $item->designations }}">{{ $item->designations }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="basic-default-phone">Assign member</label>
+                                    <input required type="number" id="basic-default-phone"
+                                        class="form-control phone-mask" placeholder="Total Capacity"
+                                        name="AssignMember[]">
+                                </div>
+
+                            </div>
+
+                            <div id="add_designation"></div>
+
+                            {{-- <div class="add_designation">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="collapsible-state3"> Description </label>
+                                        <select id="collapsible-state3" class="select2 form-select"
+                                            data-allow-clear="true" name="ProjectDescription">
+                                            <option value="">Select</option>
+                                            @foreach ($Designation as $item)
+                                                <option value="{{ $item->designations }}">{{ $item->designations }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="basic-default-phone">Asign memeber</label>
+                                        <input required type="number" id="basic-default-phone"
+                                            class="form-control phone-mask" placeholder="Total Capacity"
+                                            name="AsignMemeber">
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+
+                        <br><br><br>
+
+                        {{-- <div class="mb-3">
                             <label class="form-label" for="collapsible-state">Add Employees</label>
                             <select id="collapsible-state" class="select2 form-select" multiple data-allow-clear="true"
                                 name="AddUser[]">
@@ -147,7 +211,7 @@
                                     <option value="{{ $item->EmployeeName }}">{{ $item->EmployeeName }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
 
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Submit </button>
@@ -157,4 +221,37 @@
         </div>
 
     </div>
+@section('script')
+    <script>
+        document.getElementById('add_field').addEventListener('click', function() {
+            const addArea = document.getElementById('add_designation');
+
+            const newGroup = document.createElement('div');
+            newGroup.classList.add('row');
+
+            newGroup.innerHTML = `
+
+            <div class="col-md-6">
+                <label class="form-label" for="collapsible-state3"> Description </label>
+                <select id="collapsible-state3" class="select2 form-select"
+                    data-allow-clear="true" name="DescriptionRoll[]">
+                    <option value="">Select</option>
+                    @foreach ($Designation as $item)
+                        <option value="{{ $item->designations }}">{{ $item->designations }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="basic-default-phone">Assign member</label>
+                <input required type="number" id="basic-default-phone"
+                    class="form-control phone-mask" placeholder="Total Capacity"
+                    name="AssignMember[]">
+            </div>   
+            
+
+        `;
+            addArea.appendChild(newGroup);
+        });
+    </script>
+@endsection
 @endsection
