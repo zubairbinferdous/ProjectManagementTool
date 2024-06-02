@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -72,8 +73,18 @@ Route::post('/addDesignationData', [homeController::class, 'designationData'])->
 
 Route::get('/addUserRegister', [homeController::class, 'registerData'])->name('registerData');
 Route::post('/registerUserData', [homeController::class, 'registerUserData'])->name('registerUserData');
-Route::get('/allUser', [homeController::class, 'alluser'])->name('alluser');
+Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
 
+
+// user data form website 
+
+// project list for user 
+
+Route::get('/allProjectData', [UserController::class, 'allProjectData'])->name('allProjectData');
+
+
+//employee list
+Route::get('/allEmployee', [UserController::class, 'allEmployeeData'])->name('allEmployee');
 
 
 

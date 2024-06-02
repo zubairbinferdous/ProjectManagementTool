@@ -44,6 +44,21 @@
     <link rel="stylesheet"
         href="{{ asset('/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
 
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/node-waves/node-waves.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/flatpickr/flatpickr.css') }}" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}" />
+    <!-- Form Validation -->
+    <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/formvalidation/dist/css/formValidation.min.css') }}" />
+
     <!-- Page CSS -->
     <link rel="stylesheet" href="/assets/vendor/css/pages/cards-advance.css" />
     <!-- Helpers -->
@@ -154,10 +169,69 @@
                     <div class="container-xxl  d-flex container-p-y gap-5" style="margin-top: 4%">
                         <!-- Layout Demo -->
 
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 ">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title text-black"> Project</h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="d-flex ">
+                                                <a href="{{ route('allProjectData') }}"
+                                                    class="btn btn-primary waves-effect waves-light">view
+                                                    project data</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="progress w-100" style="height: 8px">
+                                                    <div class="progress-bar bg-info" style="width: 70%"
+                                                        role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title text-black">Employees </h5>
+                                            </div>
 
-                        @if (Auth::check() && Auth::user()->role == 'admin')
-                            <div class="container">
-                                <div class="row">
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="d-flex ">
+                                                <a href="{{ route('allEmployee') }}"
+                                                    class="btn btn-primary waves-effect waves-light">view employees
+                                                    data</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="progress w-100" style="height: 8px">
+                                                    <div class="progress-bar bg-info" style="width: 70%"
+                                                        role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--/ Layout Demo -->
+
+
+                            @if (Auth::check() && Auth::user()->role == 'admin')
+                                <div class="row" style="margin-top: 3%">
                                     <div class="col-lg-4 ">
                                         <div class="card">
                                             <div class="card-header">
@@ -239,10 +313,9 @@
                                     </div>
                                 </div>
                                 <!--/ Layout Demo -->
-                            </div>
-                        @endif
+                            @endif
 
-
+                        </div>
                     </div>
                     <!-- / Content -->
 
@@ -287,6 +360,24 @@
     <script src="{{ asset('/assets/vendor/libs/datatables-responsive/datatables.responsive.js') }}"></script>
     <script src="{{ asset('/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
     <script src="{{ asset('/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
+
+    <script src="{{ asset('/assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-responsive/datatables.responsive.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-buttons/datatables-buttons.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/jszip/jszip.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/pdfmake/pdfmake.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-buttons/buttons.html5.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-buttons/buttons.print.js') }}"></script>
+    <!-- Flat Picker -->
+    <script src="{{ asset('/assets/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <!-- Row Group JS -->
+    <script src="{{ asset('/assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js') }}"></script>
+    <script src="{{ asset('/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js') }}"></script>
 
     <!-- Main JS -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
