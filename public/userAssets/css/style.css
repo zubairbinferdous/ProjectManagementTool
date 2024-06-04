@@ -17,14 +17,14 @@ html {
 }
 
 html ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     background-color: #111d2c;
     cursor: pointer;
 }
 
 html ::-webkit-scrollbar-thumb {
     background: linear-gradient(160deg, #3c76ba, #1e428b);
-    width: 10px;
+    width: 5px;
     border-radius: 5px;
 }
 

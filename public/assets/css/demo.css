@@ -121,3 +121,73 @@ input[type="number"]::-webkit-outer-spin-button {
     text-align: center;
     margin-top: 1rem;
 }
+
+.header-data-area {
+    position: absolute;
+    padding-left: 18%;
+}
+
+.header-data-area {
+    position: absolute;
+    padding: 1% 1% 0% 36%;
+}
+
+body {
+    background-color: #b1dfa6;
+}
+
+.table-dark {
+    --bs-table-bg: #197213;
+    --bs-table-striped-bg: #4f4f4f;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #595959;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #525252;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border-color: #6f6f6f;
+}
+
+.buttons-excel {
+    background-color: #197213;
+    padding: 5px 22px;
+    border: 10px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #197213;
+    border-color: #197213;
+}
+
+.btn-primary:hover {
+    background-color: black !important;
+    border-color: #0e0e0e !important;
+    color: #fff;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+}
+.ProjectDescription {
+    font-size: 16px;
+}
+
+.bold-taxt {
+    font-weight: bold;
+}
+
+.avatar img {
+    width: 50px;
+    height: 50px;
+}

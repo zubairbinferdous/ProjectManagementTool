@@ -81,10 +81,12 @@ Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserAre
 // project list for user 
 
 Route::get('/allProjectData', [UserController::class, 'allProjectData'])->name('allProjectData');
+Route::get('/viewProjectData{id}', [UserController::class, 'viewProjectData'])->name('viewProjectData');
 
 
 //employee list
 Route::get('/allEmployee', [UserController::class, 'allEmployeeData'])->name('allEmployee');
+Route::get('/viewEmployee{id}', [UserController::class, 'viewEmployee'])->name('viewEmployee');
 
 
 

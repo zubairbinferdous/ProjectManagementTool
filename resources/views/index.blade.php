@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Vuexy - Bootstrap Admin Template</title>
+    <title>LKSS HUMAN RESOURCE CENTER (LKSS-HRC)</title>
 
     <meta name="description" content="" />
 
@@ -93,7 +93,19 @@
 
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
+                    <div class="avatar ">
+                        <a class="" href="{{ url('/dashboard') }}"> <img src="../../assets/img/avatars/logo.jpg"
+                                alt class="h-auto rounded-circle" />
+                        </a>
+                    </div>
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
+
+
+
+                        <h5 class="header-data-area">LKSS HUMAN RESOURCE CENTER (LKSS-HRC)</h5>
+
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -102,6 +114,9 @@
                                         <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
                                     </div>
                                 </a>
+
+
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="">
@@ -152,6 +167,7 @@
                             </li>
                             <!--/ User -->
                         </ul>
+
                     </div>
 
                     <!-- Search Small Screens -->
@@ -296,6 +312,33 @@
 
                                                 <div class="d-flex ">
                                                     <a href="{{ route('registerData') }}"
+                                                        class="btn btn-primary waves-effect waves-light">Add</a>
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <div class="progress w-100" style="height: 8px">
+                                                        <div class="progress-bar bg-info" style="width: 70%"
+                                                            role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="card" style="margin-top: 2%">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="card-title text-black">Add Designation</h5>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="d-flex ">
+                                                    <a href="{{ route('addDesignation') }}"
                                                         class="btn btn-primary waves-effect waves-light">Add</a>
                                                 </div>
                                                 <div class="d-flex align-items-center mt-4">

@@ -98,10 +98,21 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
+                    <div class="avatar ">
+                        <a class="" href="{{ url('/dashboard') }}"> <img src="../../assets/img/avatars/logo.jpg"
+                                alt class="h-auto rounded-circle" />
+                        </a>
+                    </div>
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
+
+
+
+                        <h5 class="header-data-area">LKSS HUMAN RESOURCE CENTER (LKSS-HRC)</h5>
+
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -110,6 +121,9 @@
                                         <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
                                     </div>
                                 </a>
+
+
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="">
@@ -160,6 +174,7 @@
                             </li>
                             <!--/ User -->
                         </ul>
+
                     </div>
 
                     <!-- Search Small Screens -->
@@ -352,11 +367,11 @@
     {{-- 
      --}}
     {{-- <script src="{{ asset('UserAssets/js/bootstrap.bundle.min.js') }}"></script>  --}}
-    <script src="{{ asset('UserAssets/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('UserAssets/js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('UserAssets/js/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('UserAssets/js/datatables.min.js') }}"></script>
-    <script src="{{ asset('UserAssets/js/custom.js') }}"></script>
+    <script src="{{ asset('/userAssets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('/userAssets/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('/userAssets/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('/userAssets/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('/userAssets/js/custom.js') }}"></script>
 
 
     <!-- Core JS -->
