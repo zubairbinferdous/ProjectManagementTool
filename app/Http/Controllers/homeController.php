@@ -109,6 +109,7 @@ class homeController extends Controller
                 'project_id' => $request->projectName,
                 'FatherName' => strtoupper($request->FatherName),
                 'DateOfBirth' => $request->DateOfBirth,
+                'ActualJoinedDate' => $request->ActualJoinedDate,
                 'BirthPlace' => strtoupper($request->BirthPlace),
                 'PhoneNumber' => $request->PhoneNumber,
                 'JoiningDate' => $request->JoiningDate,

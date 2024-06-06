@@ -30,7 +30,7 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/theme-default.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/demo.css?v=') . time() }}" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('FatherName');
             $table->string('profilePic');
             $table->date('DateOfBirth');
+            $table->date('ActualJoinedDate');
             $table->string('BirthPlace');
             $table->string('PhoneNumber');
             $table->date('JoiningDate');

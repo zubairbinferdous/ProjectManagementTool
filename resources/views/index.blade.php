@@ -30,7 +30,8 @@
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/core.css') }}" />
     <link rel="stylesheet" href="{{ asset('/assets/vendor/css/rtl/theme-default.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/assets/css/demo.css?v=') . time() }}" />
+
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -137,12 +138,15 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
-                                    <li style="">
-                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                            <i class="ti ti-user-check me-2 ti-sm"></i>
-                                            <span class="align-middle">Profile Page</span>
-                                        </a>
-                                    </li>
+                                    @if (Auth::check() && Auth::user()->role == 'admin')
+                                        <li style="">
+                                            <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                                <i class="ti ti-user-check me-2 ti-sm"></i>
+                                                <span class="align-middle">Profile Page</span>
+                                            </a>
+                                        </li>
+                                    @endif
+
 
                                     <li style="padding-bottom: 20px">
                                         <a class="dropdown-item" href="{{ url('/dashboard') }}">

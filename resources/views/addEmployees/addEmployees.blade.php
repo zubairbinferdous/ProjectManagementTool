@@ -30,8 +30,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="collapsible-state6">Project name</label>
-                            <select id="collapsible-state6" class="select2 form-select" data-allow-clear="true"
+                            <label class="form-label" for="collapsible-state9">Project name</label>
+                            <select id="collapsible-state9" class="select2 form-select" data-allow-clear="true"
                                 name="projectName">
                                 <option value="">Select</option>
                                 @foreach ($project as $item)
@@ -65,6 +65,13 @@
                             <label class="form-label" for="multicol-birthdate">Employee Joining Date</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
                                 placeholder="YYYY-MM-DD" readonly="readonly" name="JoiningDate" placeholder="YYYY-MM-DD">
+                        </div>
+                        <br>
+                        <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Employee Actual Joined Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                placeholder="YYYY-MM-DD" readonly="readonly" name="ActualJoinedDate"
+                                placeholder="YYYY-MM-DD">
                         </div>
 
                         <div class="mb-3">
