@@ -1,6 +1,10 @@
 @extends('userIndex')
 @section('userContent')
     <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
+
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -18,7 +22,9 @@
                         </thead>
                         <tbody>
                             @foreach ($EmployeeData as $item)
-                                <tr>
+                                <tr @if ($item->fake == 1) class="red" @endif
+                                    @if ($item->fake == 2) class="yellow" @endif
+                                    @if ($item->fake == 3) class="green" @endif>
                                     <td><a href="{{ route('viewEmployee', $item->id) }}">{{ $item->EmployeeName }}</a></td>
                                     <td>{{ $item->PhoneNumber }}</td>
                                     <td>{{ $item->NidNumber }}</td>

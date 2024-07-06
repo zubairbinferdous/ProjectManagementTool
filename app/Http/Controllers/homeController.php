@@ -103,6 +103,24 @@ class homeController extends Controller
             $img->toJpeg(80)->save('upload/project/' . $name_gen);
             $saveUrl = 'upload/project/' . $name_gen;
 
+            $pdfFile = $request->file('EmployeePdfOne');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $savePath = 'upload/project/' . $name_gen;
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+
+
+            $pdfFile = $request->file('EmployeePdfTwo');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $savePathTwo = 'upload/project/' . $name_gen;
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+
+
+            $pdfFile = $request->file('EmployeePdfThree');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $savePathThree = 'upload/project/' . $name_gen;
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+
+
 
             Employee::insertGetId([
                 'EmployeeName' => strtoupper($request->EmployeeName),
@@ -117,6 +135,9 @@ class homeController extends Controller
                 'Designation' => strtoupper($request->Designation),
                 'Salary' => $request->Salary,
                 'profilePic' => $saveUrl,
+                'Pdf_one' => $savePath,
+                'Pdf_two' => $savePathTwo,
+                'Pdf_three' => $savePathThree,
                 'Divisions' => strtoupper($request->Divisions),
                 'Districts' => strtoupper($request->Districts),
                 'Upazilas' => strtoupper($request->Upazilas),

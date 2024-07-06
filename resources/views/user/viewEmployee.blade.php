@@ -20,6 +20,19 @@
 
                     </div>
                 </div>
+
+                <td><a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank">PDF ONE : Joining latter</a></td>
+                <td>
+                    <a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank" class="btn btn-info">View</a>
+                </td> <br> <br>
+                <td><a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank">PDF Two : Joining latter</a></td>
+                <td>
+                    <a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank" class="btn btn-info">View</a>
+                </td><br> <br>
+                <td><a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank">PDF Three : Joining latter</a></td>
+                <td>
+                    <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank" class="btn btn-info">View</a>
+                </td><br> <br>
                 <!-- /User Card -->
                 <!-- Plan Card -->
 
@@ -139,12 +152,13 @@
                                             aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
                                             style="width: 36.4531px; display: none;"
                                             aria-label=": activate to sort column ascending"></th>
-                                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_1"
-                                            rowspan="1" colspan="1" style="width: 63.4531px;" aria-sort="descending"
+                                        <th class="sorting sorting_desc" tabindex="0"
+                                            aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                            style="width: 63.4531px;" aria-sort="descending"
                                             aria-label="ID: activate to sort column ascending">ID
                                         </th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1"
-                                            colspan="1" style="width: 74.4531px;"
+                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                            rowspan="1" colspan="1" style="width: 74.4531px;"
                                             aria-label=": activate to sort column ascending"><i
                                                 class="ti ti-trending-up"></i>
                                         </th>
@@ -192,6 +206,90 @@
                 <!-- /Invoice table -->
             </div>
             <!--/ User Content -->
+
+
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <h1 class="year">2024</h1>
+                    <div class="calendar">
+
+                        <div class="month" id="january">
+                            <h2>January</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="february">
+                            <h2>February</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="march">
+                            <h2>March</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="april">
+                            <h2>April</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="may">
+                            <h2>May</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="june">
+                            <h2>June</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="july">
+                            <h2>July</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="august">
+                            <h2>August</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="september">
+                            <h2>September</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="october">
+                            <h2>October</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="november">
+                            <h2>November</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                        <div class="month" id="december">
+                            <h2>December</h2>
+                            <button class="btn">paid</button>
+                            <br>
+                            <!-- <button class="btn">add note</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -192,6 +192,30 @@
                         </div>
 
 
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 1 </label>
+                            <input type="file" class="form-control" name="EmployeePdfOne"
+                                id="bs-validation-upload-file" required="">
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 2 </label>
+                            <input type="file" class="form-control" name="EmployeePdfTwo"
+                                id="bs-validation-upload-file" required="">
+                        </div>
+
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 3 </label>
+                            <input type="file" class="form-control" name="EmployeePdfThree"
+                                id="bs-validation-upload-file" required="">
+                        </div>
+
+
 
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Submit </button>
                     </form>

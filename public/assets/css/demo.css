@@ -191,3 +191,123 @@ body {
     width: 50px;
     height: 50px;
 }
+
+/* .calendar  */
+
+.red {
+    background-color: red !important;
+    color: #ffffff !important;
+}
+.yellow {
+    background-color: rgb(217, 255, 0) !important;
+    color: #363535 !important;
+}
+.green {
+    background-color: rgba(14, 88, 32, 0.719) !important;
+    color: #363535 !important;
+}
+
+/* .calader  */
+.year {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.month {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.month h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.days {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.day-name {
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.btn {
+    width: 45%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+#january {
+    background-color: #ffddc1;
+}
+#february {
+    background-color: #ffabab;
+}
+#march {
+    background-color: #ffc3a0;
+}
+#april {
+    background-color: #ff677d;
+}
+#may {
+    background-color: #d4a5a5;
+}
+#june {
+    background-color: #392f5a;
+    color: white;
+}
+#july {
+    background-color: #31a2ac;
+}
+#august {
+    background-color: #61c0bf;
+}
+#september {
+    background-color: #6b4226;
+    color: white;
+}
+#october {
+    background-color: #d9bf77;
+}
+#november {
+    background-color: #acd8aa;
+}
+#december {
+    background-color: #ffe156;
+}
