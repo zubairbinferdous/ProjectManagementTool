@@ -1,9 +1,31 @@
 @extends('userIndex')
 @section('userContent')
+    <style>
+        .calendar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .month {
+            border: 1px solid #ddd;
+            margin: 5px;
+            padding: 10px;
+            width: 22%;
+            /* Adjusted to fit four columns */
+            box-sizing: border-box;
+        }
+
+        .month-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+
     <div class="container">
         <div class="row">
             <!-- User Sidebar -->
-            <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
+            <div class="col-xl-3 col-lg-4 col-md-4 order-1 order-md-0">
                 <!-- User Card -->
                 <div class="card mb-4">
                     <div class="card-body">
@@ -12,7 +34,7 @@
                                 <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ asset($ViewEmployeeData->profilePic) }}"
                                     height="100" width="200" alt="User avatar">
                                 <div class="user-info text-center">
-                                    <h4 class="mb-2">{{ $ViewEmployeeData->EmployeeName }}</h4>
+                                    <h4> {{ $ViewEmployeeData->EmployeeName }}</h4>
                                     <span class="badge bg-label-secondary mt-1">{{ $ViewEmployeeData->Designation }}</span>
                                 </div>
                             </div>
@@ -21,18 +43,23 @@
                     </div>
                 </div>
 
-                <td><a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank">PDF ONE : Joining latter</a></td>
+
+
+                {{-- <td>
+                    <a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank">PDF ONE : Joining latter</a>
+                </td> --}}
                 <td>
-                    <a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank" class="btn btn-info">View</a>
-                </td> <br> <br>
-                <td><a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank">PDF Two : Joining latter</a></td>
+
+                </td>
+
+                {{-- <td><a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank">PDF Two : Joining latter</a></td>
                 <td>
                     <a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank" class="btn btn-info">View</a>
-                </td><br> <br>
+                </td>
                 <td><a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank">PDF Three : Joining latter</a></td>
                 <td>
                     <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank" class="btn btn-info">View</a>
-                </td><br> <br>
+                </td> --}}
                 <!-- /User Card -->
                 <!-- Plan Card -->
 
@@ -41,12 +68,9 @@
             <!--/ User Sidebar -->
 
             <!-- User Content -->
-            <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
-
-                <div class="row">
-                    <h1> {{ $ViewEmployeeData->EmployeeName }}</h1>
-                    <div class="col-md-6">
-
+            <div class="col-xl-9 col-lg-8 col-md-8 order-0 order-md-1">
+                <div class="row gap-2">
+                    <div class="col-md-5 card">
                         <div class="card-body">
                             <p class="mt-4 small text-uppercase text-muted">Personal Details</p>
                             <div class="info-container">
@@ -78,9 +102,27 @@
                                 </ul>
 
                             </div>
+
+                            <div class="d-flex">
+                                <a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank"
+                                    class="btn btn-info">Joining latter
+                                    1</a>
+                                <a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank"
+                                    class="btn btn-info">Joining latter
+                                    2</a>
+                                <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank"
+                                    class="btn btn-info">Joining latter
+                                    3</a>
+                                <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank"
+                                    class="btn btn-info">Joining latter
+                                    4</a>
+                                <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank"
+                                    class="btn btn-info">Joining latter
+                                    5</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5 card">
                         <div class="card-body">
 
                             <p class="mt-4 small text-uppercase text-muted">Professional Details</p>
@@ -119,7 +161,7 @@
                 </div>
 
                 <!-- Invoice table -->
-                <div class="card mb-4">
+                {{-- <div class="card mb-4">
                     <div class="table-responsive mb-3">
                         <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                             <div class="row mx-4">
@@ -202,14 +244,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /Invoice table -->
             </div>
             <!--/ User Content -->
-
-
         </div>
-        <div class="row">
+        @php
+            $calender = $ViewEmployeeData->JoiningDate;
+            $year = date('Y', strtotime($calender));
+            $month = date('F', strtotime($calender));
+        @endphp
+        <div class="container">
+            <div class="calendar" data-year="{{ $year }}" data-month="{{ $month }}">
+                <!-- Calendar will be generated by JavaScript -->
+            </div>
+        </div>
+        <div class="row card p-5">
             <div class="container">
                 <div class="row">
                     <h1 class="year">2024</h1>
@@ -217,73 +267,73 @@
 
                         <div class="month" id="january">
                             <h2>January</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="february">
                             <h2>February</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="march">
                             <h2>March</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="april">
                             <h2>April</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="may">
                             <h2>May</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="june">
                             <h2>June</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="july">
                             <h2>July</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="august">
                             <h2>August</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="september">
                             <h2>September</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="october">
                             <h2>October</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="november">
                             <h2>November</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
-                            <!-- <button class="btn">add note</button> -->
+                            <!-- <button class="btnCalender">add note</button> -->
                         </div>
                         <div class="month" id="december">
                             <h2>December</h2>
-                            <button class="btn">paid</button>
+                            <button class="btnCalender">paid</button>
                             <br>
                             <!-- <button class="btn">add note</button> -->
                         </div>
@@ -291,5 +341,35 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+        });
+
+        function generateCalendar() {
+            const calendarElement = document.querySelector('.calendar');
+            const year = calendarElement.getAttribute('data-year');
+            const month = calendarElement.getAttribute('data-month');
+            calendarElement.innerHTML = '';
+
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            months.forEach(m => {
+                const monthDiv = document.createElement('div');
+                monthDiv.className = 'month';
+                monthDiv.innerHTML = `<div class="month-name">${m} ${year}</div>`;
+                if (m === month) {
+                    monthDiv.style.backgroundColor = '#f0f0f0'; // Highlight the joining month
+                }
+                calendarElement.appendChild(monthDiv);
+            });
+        }
+    </script>
 @endsection

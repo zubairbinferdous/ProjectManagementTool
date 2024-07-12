@@ -47,6 +47,19 @@
                             placeholder="Enter your email">
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
+
+                    <div class="mb-3 fv-plugins-icon-container">
+                        <label for="email" class="form-label">Roll</label>
+                        <select name="" id="" class="select2 form-select select2-hidden-accessible">
+                            <option value="" data-select2-id="18">Select</option>
+                            <option value="Australia" data-select2-id="71">Admin</option>
+                            <option value="Bangladesh" data-select2-id="72">Manager</option>
+                            <option value="Belarus" data-select2-id="73">Accountant</option>
+                        </select>
+                    </div>
+
+
+
                     <div class="mb-3 form-password-toggle fv-plugins-icon-container">
                         <label class="form-label" for="password">Password</label>
                         <div class="input-group input-group-merge has-validation">
@@ -65,6 +78,7 @@
                         </div>
                         <div class="fv-plugins-message-container invalid-feedback"></div>
                     </div>
+
 
                     {{-- <div class="mb-3 fv-plugins-icon-container">
                         <div class="form-check">

@@ -80,6 +80,19 @@
     <script src="assets/js/config.js"></script>
 </head>
 
+<style>
+    body {
+
+        background-image: url('{{ asset('assets/img/mujib.jpg') }}') !important;
+        background-size: cover;
+        /* Ensures the background image covers the whole area */
+        background-repeat: no-repeat;
+        /* Prevents the background image from repeating */
+        background-position: 1% -6%;
+        /* Centers the background image */
+    }
+</style>
+
 {{-- @if (Route::has('login'))
 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
     @auth
