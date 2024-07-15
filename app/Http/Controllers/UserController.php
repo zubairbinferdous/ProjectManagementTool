@@ -6,6 +6,7 @@ use App\Models\DesignationRoll;
 use App\Models\Employee;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Models\Balance;
 
 class UserController extends Controller
 {
@@ -33,7 +34,8 @@ class UserController extends Controller
 
     public function viewEmployee($id)
     {
+        $existingRecords = Balance::where('employees_id', $id)->select('month', 'year')->get();
         $ViewEmployeeData = Employee::with('projectData')->where('id', $id)->first();
-        return view('user.viewEmployee', compact('ViewEmployeeData'));
+        return view('user.viewEmployee', compact('ViewEmployeeData', 'existingRecords'));
     }
 }

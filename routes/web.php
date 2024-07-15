@@ -88,6 +88,17 @@ Route::get('/allEmployee', [UserController::class, 'allEmployeeData'])->name('al
 Route::get('/viewEmployee{id}', [UserController::class, 'viewEmployee'])->name('viewEmployee');
 
 
+//add salary  
+Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balance_data');
+
+// balance data
+
+Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
+Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
+
+
+
+
 
 
 

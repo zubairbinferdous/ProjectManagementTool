@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balance;
 use App\Models\Designation;
 use App\Models\DesignationRoll;
 use Intervention\Image\ImageManager;
@@ -219,5 +220,53 @@ class homeController extends Controller
     {
         $user =  User::latest()->get();
         return view('addUser.alluser', compact('user'));
+    }
+
+
+    // salary add data 
+
+    function salaryDataInset(Request $request)
+    {
+
+        $existingRecord = Balance::where('employees_id', $request->employee_id)
+            ->where('month', $request->month)
+            ->where('year', $request->year)
+            ->first();
+
+        if ($existingRecord) {
+            toastr()->error('Salary for this month and year has already been submitted');
+            return redirect()->back();
+        }
+
+        Balance::insertGetId([
+            'employees_id' => $request->employee_id,
+            'actualSalary' => $request->ActualSalaryProvide,
+            'month' => $request->month,
+            'year' => $request->year,
+            'status' => "paid",
+        ]);
+        toastr()->success('successfully salary submit');
+        return redirect()->back();
+    }
+
+    // balance  data 
+
+    function balanceDataShow()
+    {
+
+        $year = Balance::select('year')->distinct()->orderBy('year', 'desc')->get();
+        return view('balance', compact('year'));
+    }
+
+
+    function balanceList(Request $request)
+    {
+        $existingRecord = Balance::with('employeeData')->where('month', $request->month)
+            ->where('year', $request->year)
+            ->get();
+
+        $totalSalary = $existingRecord->sum('actualSalary');
+
+        return view('balanceList', compact('existingRecord', 'totalSalary'));
     }
 }
