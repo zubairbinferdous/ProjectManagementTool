@@ -28,7 +28,7 @@
                     </a>
                 </div> --}}
                 <!-- /Logo -->
-                <h4 class="mb-1 pt-2">Add User Area🚀</h4>
+                <h4 class="mb-1 pt-2">Add User Area</h4>
 
 
                 <form id="formAuthentication" class="mb-3 fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
@@ -52,9 +52,9 @@
                         <label for="email" class="form-label">Roll</label>
                         <select name="" id="" class="select2 form-select select2-hidden-accessible">
                             <option value="" data-select2-id="18">Select</option>
-                            <option value="Australia" data-select2-id="71">Admin</option>
-                            <option value="Bangladesh" data-select2-id="72">Manager</option>
-                            <option value="Belarus" data-select2-id="73">Accountant</option>
+                            <option value="admin" data-select2-id="71">Admin</option>
+                            <option value="projectManager" data-select2-id="72">Project Manager</option>
+                            <option value="headManager" data-select2-id="73">Head Manager</option>
                         </select>
                     </div>
 

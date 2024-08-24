@@ -14,14 +14,20 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('ProjectName');
+            $table->string('ProjectDirector');
+            $table->integer('ProjectNumber');
+            $table->integer('ProjectValue');
             $table->date('ProjectStart');
             $table->longText('ProjectDescription');
+            $table->string('StaffName');
+            $table->string('StaffNumber');
             $table->string('ProjectDivisions');
             $table->string('ProjectDistricts');
             $table->string('ProjectUpazilas')->nullable();
             $table->integer('TotalCapacity');
             $table->integer('CurrentWorking');
             $table->string('status');
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }

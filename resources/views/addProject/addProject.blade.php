@@ -10,11 +10,51 @@
                 <div class="card-body">
                     <form action="{{ route('addProjectData') }}" method="POST">
                         @csrf
+
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Project Name</label>
+                            <label class="form-label" for="basic-default-fullname">Project name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Project Name" name="ProjectName">
+                                placeholder="Project name"" name="ProjectName">
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Director name</label>
+                            <input required type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Director name"" name="DirectorName">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Director number</label>
+                            <input required type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Director number" name="DirectorNumber">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Support staff</label>
+                            <input required type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Project Name" name="Supportstaff">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Support number</label>
+                            <input required type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Support number" name="Supportnumber">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-fullname">Project Value</label>
+                            <input required type="text" class="form-control" id="basic-default-fullname"
+                                placeholder="Project Value" name="ProjectValue">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="collapsible-state5"> Project Role Add </label>
+                            <select id="collapsible-state5" class="select2 form-select" data-allow-clear="" name="role">
+                                <option value="">Select</option>
+                                <option value="admin">Admin</option>
+                                <option value="projectManager">Project Manager</option>
+                                <option value="headManager">Head Manager</option>
+                            </select>
+                        </div>
+
+
 
                         <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Project Start Date</label>
@@ -30,7 +70,7 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state4"> Project Divisions </label>
-                            <select id="collapsible-state4" class="select2 form-select" data-allow-clear="true"
+                            <select id="collapsible-state4" class="select2 form-select" data-allow-clear=""
                                 name="ProjectDivisions">
                                 <option value="">Select</option>
                                 <option value="Chattagram">Chattagram</option>
@@ -44,9 +84,13 @@
                             </select>
                         </div>
 
+
+
+
+
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state2"> Project Districts </label>
-                            <select id="collapsible-state2" class="select2 form-select" data-allow-clear="true"
+                            <select id="collapsible-state2" class="select2 form-select" data-allow-clear=""
                                 name="ProjectDistricts">
                                 <option value="">Select</option>
                                 <option value="Cumilla">Cumilla</option>
@@ -143,6 +187,7 @@
                                 <option value="Close">Close</option>
                             </select>
                         </div>
+
 
                         <div id="">
                             <div class="row">

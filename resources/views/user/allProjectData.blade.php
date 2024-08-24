@@ -11,7 +11,10 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Project Name</th>
-                                <th>Payment Status(Last Month)</th>
+                                <th>Project State Date</th>
+                                <th>Project Director</th>
+                                <th>Project Director Number</th>
+                                <th>Project Working Capacity</th>
                                 <th>Project Status</th>
                             </tr>
                         </thead>
@@ -21,13 +24,10 @@
                                 <tr>
                                     <td><a href="{{ route('viewProjectData', $item->id) }}">{{ $item->ProjectName }}</a>
                                     </td>
-                                    @if ($item->status === 'Active')
-                                        <td class=""><span class="badge bg-label-danger">paid</span>
-                                        </td>
-                                    @else
-                                        <td class=""><span class="badge bg-label-success">unpaid</span>
-                                        </td>
-                                    @endif
+                                    <td>{{ $item->ProjectStart }}</td>
+                                    <td>{{ $item->ProjectDirector }}</td>
+                                    <td>{{ $item->ProjectNumber }}</td>
+                                    <td>{{ $item->CurrentWorking }}</td>
 
                                     @if ($item->status === 'Active')
                                         <td class=""><span class="badge bg-label-success">{{ $item->status }}</span>

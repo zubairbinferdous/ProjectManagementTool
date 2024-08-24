@@ -30,7 +30,13 @@ class homeController extends Controller
         // dd($request->all());
         $project = Project::create([
             'ProjectName' =>  strtoupper($request->ProjectName),
+            'ProjectDirector' =>  strtoupper($request->DirectorName),
+            'StaffName' =>  strtoupper($request->Supportstaff),
+            'StaffNumber' =>  strtoupper($request->Supportnumber),
+            'ProjectNumber' => $request->DirectorNumber,
+            'ProjectValue' => $request->ProjectValue,
             'ProjectStart' =>  $request->ProjectStart,
+            'role' =>  $request->role,
             'ProjectDescription' => $request->ProjectDescription,
             'ProjectDivisions' => strtoupper($request->ProjectDivisions),
             'ProjectDistricts' =>  strtoupper($request->ProjectDistricts),

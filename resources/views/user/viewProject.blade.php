@@ -25,9 +25,17 @@
                                         <span class="fw-semibold me-1">Project Start Date:</span>
                                         <span> {{ $ViewProjectData->ProjectStart }} </span>
                                     </li>
+                                    <li class="mb-2">
+                                        <span class="fw-semibold me-1">Project Director:</span>
+                                        <span> {{ $ViewProjectData->ProjectDirector }} </span>
+                                    </li>
+                                    <li class="mb-2">
+                                        <span class="fw-semibold me-1">Project Director Number:</span>
+                                        <span> {{ $ViewProjectData->ProjectNumber }} </span>
+                                    </li>
                                     <li class="mb-2 pt-1">
-                                        <span class="fw-semibold me-1">Project Status:</span>
-                                        <span>{{ $ViewProjectData->status }}</span>
+                                        <span class="fw-semibold me-1">Project Value:</span>
+                                        <span>{{ $ViewProjectData->ProjectValue }}</span>
                                     </li>
                                     <li class="mb-2 pt-1">
                                         <span class="fw-semibold me-1">Project Capacity:</span>
@@ -73,6 +81,15 @@
                                         <span>{{ $ViewProjectData->ProjectUpazilas }}</span>
                                     </li>
 
+                                    <li class="mb-2 pt-1">
+                                        <span class="fw-semibold me-1">Project support staff name:</span>
+                                        <span>{{ $ViewProjectData->StaffName }}</span>
+                                    </li>
+                                    <li class="mb-2 pt-1">
+                                        <span class="fw-semibold me-1">Project support staff number:</span>
+                                        <span>{{ $ViewProjectData->StaffNumber }}</span>
+                                    </li>
+
 
                                 </ul>
 
@@ -93,7 +110,7 @@
                                             <th>Phone Number</th>
                                             <th>Designation</th>
                                             <th>Project Name</th>
-                                            <th>Last Month Payment</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -105,15 +122,14 @@
                                                 <td>{{ $item->PhoneNumber }}</td>
                                                 <td>{{ $item->Designation }}</td>
                                                 <td>{{ $item->projectData->ProjectName }}</td>
-                                                {{-- <td>{{ $item->Salary }}</td> --}}
 
-                                                @if ($item->status === 'Active')
+                                                {{-- @if ($item->status === 'Active')
                                                     <td class=""><span class="badge bg-label-success">paid</span>
                                                     </td>
                                                 @else
                                                     <td class=""><span class="badge bg-label-danger">unpaid</span>
                                                     </td>
-                                                @endif
+                                                @endif --}}
                                             </tr>
                                         @endforeach
 
