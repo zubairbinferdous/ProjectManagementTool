@@ -1,14 +1,26 @@
 @extends('userIndex')
 @section('userContent')
-    <!-- =============== Design & Develop By = MJ MARAZ   ====================== -->
+    <style>
+        .red-bg {
+            background-color: rgba(255, 0, 0, 0.651) !important;
+        }
 
+        .yellow-bg {
+            background-color: rgba(201, 201, 11, 0.829) !important;
+        }
 
+        .green-bg {
+            background-color: rgba(218, 188, 21, 0.651) !important;
+        }
 
-
+        .blue-bg {
+            background-color: rgb(240, 240, 240) !important;
+        }
+    </style>
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center bold-taxt " style=""> Employee Listes</h1>
+                <h1 class="text-center bold-taxt">Employee Lists</h1>
                 <div class="data_table">
                     <table id="example" class="table table-striped table-bordered">
                         <thead class="table-dark">
@@ -17,27 +29,26 @@
                                 <th>Phone Number</th>
                                 <th>NID</th>
                                 <th>Project Name</th>
-                                <th>Last Month Payment</th>
+
                             </tr>
                         </thead>
                         <tbody>
+
+
                             @foreach ($EmployeeData as $item)
-                                <tr @if ($item->fake == 1) class="red" @endif
-                                    @if ($item->fake == 2) class="yellow" @endif
-                                    @if ($item->fake == 3) class="green" @endif>
+                                @php
+                                    $statusColor = getPaymentStatusColor($item->id);
+                                @endphp
+                                <tr
+                                    @if ($statusColor == 'red') class="red-bg"
+                                @elseif ($statusColor == 'yellow') class="yellow-bg"
+                                @elseif ($statusColor == 'green') class="green-bg"
+                                @elseif ($statusColor == 'blue') class="blue-bg" @endif>
                                     <td><a href="{{ route('viewEmployee', $item->id) }}">{{ $item->EmployeeName }}</a></td>
+
                                     <td>{{ $item->PhoneNumber }}</td>
                                     <td>{{ $item->NidNumber }}</td>
                                     <td>{{ $item->projectData->ProjectName }}</td>
-                                    <td class=""><span class="badge bg-label-danger">unpaid</span>
-                                    </td>
-                                    {{-- @if ($item->Salary)
-                                        <td class=""><span class="badge bg-label-success">{{ $item->status }}</span>
-                                        </td>
-                                    @else
-                                        <td class=""><span class="badge bg-label-danger">{{ $item->status }}</span>
-                                        </td>
-                                    @endif --}}
                                 </tr>
                             @endforeach
 

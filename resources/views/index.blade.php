@@ -401,26 +401,250 @@
                                 </div>
                                 <!--/ Layout Demo -->
                             @endif
+                            @if (Auth::check() && Auth::user()->role == 'manager')
+                                <div class="row" style="margin-top: 3%">
+                                    <div class="col-lg-4 ">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="card-title text-black">Add New Project</h5>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="d-flex ">
+                                                    <a href="{{ route('addProject') }}"
+                                                        class="btn btn-primary waves-effect waves-light">Add</a>
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <div class="progress w-100" style="height: 8px">
+                                                        <div class="progress-bar bg-info" style="width: 70%"
+                                                            role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 ">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="card-title text-black">Add New Employees</h5>
+                                                </div>
 
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="d-flex ">
+                                                    <a href="{{ route('addEmployees') }}"
+                                                        class="btn btn-primary waves-effect waves-light">Add</a>
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <div class="progress w-100" style="height: 8px">
+                                                        <div class="progress-bar bg-info" style="width: 70%"
+                                                            role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="card" style="margin-top: 2%">
+                                            <div class="card-header">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="card-title text-black">Add Designation</h5>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="d-flex ">
+                                                    <a href="{{ route('addDesignation') }}"
+                                                        class="btn btn-primary waves-effect waves-light">Add</a>
+                                                </div>
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <div class="progress w-100" style="height: 8px">
+                                                        <div class="progress-bar bg-info" style="width: 70%"
+                                                            role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-primary" role="progressbar"
+                                                            style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                        </div>
+                        <!--/ Layout Demo -->
+                        @endif
+
+                        @if (Auth::check() && Auth::user()->role == 'headManager')
+                            {{-- <div class="row" style="margin-top: 3%">
+                                <div class="col-lg-4 ">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title text-black">Add New Project</h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="d-flex ">
+                                                <a href="{{ route('addProject') }}"
+                                                    class="btn btn-primary waves-effect waves-light">Add</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="progress w-100" style="height: 8px">
+                                                    <div class="progress-bar bg-info" style="width: 70%"
+                                                        role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title text-black">Add New Employees</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="d-flex ">
+                                                <a href="{{ route('addEmployees') }}"
+                                                    class="btn btn-primary waves-effect waves-light">Add</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="progress w-100" style="height: 8px">
+                                                    <div class="progress-bar bg-info" style="width: 70%"
+                                                        role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                            {{-- <div class="col-lg-4 ">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title text-black">Add New User</h5>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div class="d-flex ">
+                                            <a href="{{ route('registerData') }}"
+                                                class="btn btn-primary waves-effect waves-light">Add</a>
+                                        </div>
+                                        <div class="d-flex align-items-center mt-4">
+                                            <div class="progress w-100" style="height: 8px">
+                                                <div class="progress-bar bg-info" style="width: 70%"
+                                                    role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            {{-- <div class="col-lg-4">
+                                    <div class="card" style="margin-top: 2%">
+                                        <div class="card-header">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title text-black">Add Designation</h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div class="d-flex ">
+                                                <a href="{{ route('addDesignation') }}"
+                                                    class="btn btn-primary waves-effect waves-light">Add</a>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-4">
+                                                <div class="progress w-100" style="height: 8px">
+                                                    <div class="progress-bar bg-info" style="width: 70%"
+                                                        role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card" style="margin-top: 2%">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title text-black">See balance </h5>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+
+                                <div class="d-flex ">
+                                    <a href="{{ route('balance') }}"
+                                        class="btn btn-primary waves-effect waves-light">Balance</a>
+                                </div>
+                                <div class="d-flex align-items-center mt-4">
+                                    <div class="progress w-100" style="height: 8px">
+                                        <div class="progress-bar bg-info" style="width: 70%" role="progressbar"
+                                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 30%"
+                                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- / Content -->
-
-                    <!-- Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-
-                    </footer>
-                    <!-- / Footer -->
-
-                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
-            </div>
-            <!-- / Layout page -->
-        </div>
+                <!--/ Layout Demo -->
+                @endif
 
-        <!-- Drag Target Area To SlideIn Menu On Small Screens -->
-        <div class="drag-target"></div>
+            </div>
+        </div>
+        <!-- / Content -->
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+
+        </footer>
+        <!-- / Footer -->
+
+        <div class="content-backdrop fade"></div>
+    </div>
+    <!-- Content wrapper -->
+    </div>
+    <!-- / Layout page -->
+    </div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
     </div>
     <!-- / Layout wrapper -->
 

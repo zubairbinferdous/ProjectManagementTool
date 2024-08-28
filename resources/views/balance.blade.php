@@ -2,10 +2,10 @@
 @section('userContent')
     <style>
         .search-data {
-            display: flex;
+            /* display: flex; */
         }
 
-        .search-data select {
+        .search-data .mb-3 {
             margin-right: 10px;
         }
     </style>
@@ -18,16 +18,46 @@
         <div class="row">
             <div class="col-12">
                 <div class="data_table">
-                    <h1 class="text-center bold-taxt " style=""> Balance </h1>
+                    <h1 class="text-center bold-taxt " style=""> Balance Area</h1>
                     <form action="{{ route('balanceList') }}" method="GET">
                         @csrf
                         <div class="search-data">
-                            <select name="year" id="">
+                            <div class="mb-3">
+                                <label class="form-label" for="collapsible-state19">Select Year</label>
+                                <select id="collapsible-state19" class="select2 form-select" data-allow-clear="true"
+                                    name="year">
+                                    @foreach ($year as $item)
+                                        <option value="{{ $item->year }}"> {{ $item->year }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="collapsible-state20">Select Month</label>
+                                <select id="collapsible-state20" class="select2 form-select" data-allow-clear="true"
+                                    name="month">
+                                    <option selected=""> Select Month</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+
+                            {{-- <select name="year" id="">
                                 @foreach ($year as $item)
                                     <option value="{{ $item->year }}"> {{ $item->year }} </option>
                                 @endforeach
-                            </select>
-                            <select name="month" id="">
+                            </select> --}}
+                            {{-- <select name="month" id="">
                                 <option selected=""> Select Month</option>
                                 <option value="January">January</option>
                                 <option value="February">February</option>
@@ -41,8 +71,13 @@
                                 <option value="October">October</option>
                                 <option value="November">November</option>
                                 <option value="December">December</option>
-                            </select>
-                            <button>search</button>
+                            </select> --}}
+                            <button class="btn btn-success" type="submit" name="balance" value="balanceList">Search Balance
+                                List </button>
+                            <button class="btn btn-success" type="submit" name="balance" value="balancePDF">Download
+                                Balance List </button>
+                            <button class="btn btn-success" type="submit" name="balance" value="balancePDF">Download
+                                Balance Note </button>
                         </div>
                     </form>
                     {{-- @php

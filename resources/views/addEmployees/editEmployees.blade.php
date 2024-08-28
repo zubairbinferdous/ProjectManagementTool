@@ -13,13 +13,13 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname"> Employee Name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Employee Name" name="EmployeeName">
+                                placeholder="{{ $getEmployees->EmployeeName }}" name="EmployeeName">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname"> Employee Father Name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Father Name" name="FatherName">
+                                placeholder="{{ $getEmployees->FatherName }}" name="FatherName">
                         </div>
 
 
@@ -44,46 +44,46 @@
                         <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Employee Date Of Birth</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
-                                placeholder="YYYY-MM-DD" readonly="readonly" name="DateOfBirth">
+                                placeholder="{{ $getEmployees->DateOfBirth }}" readonly="readonly" name="DateOfBirth">
                         </div> <br>
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Employee Birth Place</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Birth Place" name="BirthPlace">
+                                placeholder="{{ $getEmployees->BirthPlace }}" name="BirthPlace">
                         </div>
 
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Employee Phone Number</label>
                             <input required type="number" class="form-control" id="basic-default-fullname"
-                                placeholder="Phone Number" name="PhoneNumber">
+                                placeholder="{{ $getEmployees->PhoneNumber }}" name="PhoneNumber">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Employee Account Number</label>
                             <input required type="number" class="form-control" id="basic-default-fullname"
-                                placeholder="Phone Number" name="Account">
+                                placeholder="{{ $getEmployees->Account }}" name="Account">
                         </div>
 
 
                         <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Employee Joining Date</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
-                                placeholder="YYYY-MM-DD" readonly="readonly" name="JoiningDate" placeholder="YYYY-MM-DD">
+                                placeholder="{{ $getEmployees->JoiningDate }}" readonly="readonly" name="JoiningDate">
                         </div>
                         <br>
                         <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Employee Actual Joined Date</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
-                                placeholder="YYYY-MM-DD" readonly="readonly" name="ActualJoinedDate"
-                                placeholder="YYYY-MM-DD">
+                                placeholder="{{ $getEmployees->ActualJoinedDate }}" readonly="readonly"
+                                name="ActualJoinedDate">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="phone-nid-number">Employee Nid Number</label>
                             <input required type="text" id="phone-nid-number" class="form-control "
-                                placeholder="Employee Nid Number" name="NidNumber">
+                                placeholder="{{ $getEmployees->NidNumber }}" name="NidNumber">
                         </div>
 
                         <div class="mb-3">
@@ -100,7 +100,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Employee Salary</label>
                             <input required type="number" id="basic-default-phone" class="form-control "
-                                placeholder="Salary" name="Salary">
+                                placeholder="{{ $getEmployees->Salary }}" name="Salary">
                         </div>
 
                         <div class="mb-3">
@@ -223,7 +223,7 @@
 
 
 
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit </button>
+                        <button type="button" class="btn btn-primary waves-effect waves-light">Submit </button>
                     </form>
                 </div>
 

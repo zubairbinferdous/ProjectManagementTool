@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('auth.login');
 });
+// Route::get('/', function () {
+//     return view('balancePdf');
+// });
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -75,6 +78,83 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
 });
 
+Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    //  product area 
+    Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
+    Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
+    Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
+    Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
+    Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
+
+
+    // employee area
+    Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
+    Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
+    Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
+    Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
+    Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
+
+    // designation 
+    Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
+    Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
+    Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
+
+    // add user 
+
+    Route::get('/addUserRegister', [homeController::class, 'registerData'])->name('registerData');
+    Route::post('/registerUserData', [homeController::class, 'registerUserData'])->name('registerUserData');
+    Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
+});
+
+
+Route::group(['middleware' => ['auth', 'role:manager']], function () {
+
+
+
+    //  product area 
+    Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
+    Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
+    Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
+    Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
+    Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
+
+
+    // employee area
+    Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
+    Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
+    Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
+    Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
+    Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
+
+    // designation 
+    Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
+    Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
+    Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
+
+    // add user 
+});
+
+Route::group(['middleware' => ['auth', 'role:headManager']], function () {
+
+    //add salary  
+    Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balance_data');
+
+    // balance data
+
+    Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
+    Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
+    Route::post('/balanceDecrease', [homeController::class, 'balanceDecrease'])->name('deduct.selected');
+
+    // add user 
+});
+
+
 // user data form website 
 
 // project list 
@@ -95,6 +175,7 @@ Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balan
 
 Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
 Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
+Route::post('/balanceDecrease', [homeController::class, 'balanceDecrease'])->name('deduct.selected');
 
 
 

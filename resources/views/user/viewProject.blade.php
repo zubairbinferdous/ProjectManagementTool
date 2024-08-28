@@ -64,6 +64,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
+                            @php
+
+                                // @dump($EmployeeData)
+                            @endphp
+
 
                             {{-- <p class="mt-4 small text-uppercase text-muted">Professional Details</p> --}}
                             <div class="info-container">
@@ -137,6 +142,34 @@
                                 </table>
                             </div>
                         </div>
+                        @if (Auth::check() && Auth::user()->role == 'admin')
+                            <div class="col-12">
+                                <div class="data_table">
+                                    <table id="example" class="table table-striped table-bordered">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Designation</th>
+                                                <th>Count</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($roleCounts as $item)
+                                                <tr>
+
+                                                    <td>{{ $item->Designation }}</td>
+                                                    <td>{{ $item->total }}</td>
+
+                                                </tr>
+                                            @endforeach
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <!-- /Invoice table -->

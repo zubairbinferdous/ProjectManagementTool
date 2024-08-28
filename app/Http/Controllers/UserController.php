@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Balance;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -20,7 +21,11 @@ class UserController extends Controller
     {
         $ViewProjectData = Project::with('designation')->where('id', $id)->first();
         $EmployeeData = Employee::where('project_id', $id)->get();
-        return view('user.viewProject', compact('ViewProjectData', 'EmployeeData'));
+        $roleCounts = Employee::select('Designation', DB::raw('count(*) as total'))
+            ->where('project_id', $id)
+            ->groupBy('Designation')
+            ->get();
+        return view('user.viewProject', compact('ViewProjectData', 'EmployeeData', 'roleCounts'));
     }
 
 

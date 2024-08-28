@@ -13,13 +13,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Descriptor\Descriptor;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Mpdf\Mpdf;
+use Mpdf\MpdfException;
+// use Mpdf\Mpdf; 
+
 
 class homeController extends Controller
 {
     // project-area 
     public function addProject()
     {
-
         $Designation =  Designation::latest()->get();
         return view("addProject.addProject", compact('Designation'));
     }
@@ -34,6 +39,7 @@ class homeController extends Controller
             'StaffName' =>  strtoupper($request->Supportstaff),
             'StaffNumber' =>  strtoupper($request->Supportnumber),
             'ProjectNumber' => $request->DirectorNumber,
+            'Account' => $request->Account,
             'ProjectValue' => $request->ProjectValue,
             'ProjectStart' =>  $request->ProjectStart,
             'role' =>  $request->role,
@@ -82,8 +88,7 @@ class homeController extends Controller
     public function getSingleProject($id)
     {
         $singleProject = Project::with('designation')->where("id", $id)->first();
-        // $DesignationRoll = DesignationRoll::where('project_id', $id)->get();
-        return  $singleProject;
+        return view('addProject.editProject', compact('singleProject'));
     }
 
 
@@ -172,8 +177,10 @@ class homeController extends Controller
 
     public function getSingleEmployee($id)
     {
+        $project =  Project::latest()->get();
+        $Designation =  Designation::latest()->get();
         $getEmployees = Employee::with('projectData')->where('id', $id)->first();
-        return $getEmployees;
+        return view('addEmployees.editEmployees', compact('getEmployees', 'project', 'Designation'));
     }
 
     // designation 
@@ -267,12 +274,66 @@ class homeController extends Controller
 
     function balanceList(Request $request)
     {
-        $existingRecord = Balance::with('employeeData')->where('month', $request->month)
-            ->where('year', $request->year)
-            ->get();
 
-        $totalSalary = $existingRecord->sum('actualSalary');
+        try {
+            // Fetch the records for the given month and year
+            $data = Balance::with('employeeData')
+                ->where('month', $request->month)
+                ->where('year', $request->year)
+                ->get();
 
-        return view('balanceList', compact('existingRecord', 'totalSalary'));
+            // Calculate the total salary
+            $totalSalary = $data->sum('actualSalary');
+
+            // Render the Blade template to an HTML string
+            $html = view('balancePdf', compact('data'))->render();
+
+            // Create an instance of mPDF
+            $mpdf = new Mpdf();
+
+            // Write the rendered HTML to the PDF
+            $mpdf->WriteHTML($html);
+
+            // Output the PDF as a download
+            $mpdf->Output('balance_report.pdf', 'D');
+        } catch (MpdfException $e) {
+            // Handle mPDF exceptions
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    function balanceDecrease(Request $request)
+    {
+
+        $request->validate([
+            'employee_ids' => 'required|array',
+        ]);
+
+
+        if (!is_array($request->employee_ids) || empty($request->employee_ids)) {
+            toastr()->success('No employees selected.');
+            return redirect()->back();
+        }
+
+
+
+        if ($request->deduction_type == "percentage") {
+            DB::table('balances')
+                ->whereIn('id', $request->employee_ids)
+                ->update([
+                    'actualSalary' => DB::raw('actualSalary - (actualSalary * 0.05)')
+                ]);
+            toastr()->success('successfully salary submit', '5000 has been deducted from the selected employees\' balance.');
+        }
+        if ($request->deduction_type == "fixed") {
+            DB::table('balances')
+                ->whereIn('id', $request->employee_ids)
+                ->decrement('actualSalary', 5000);
+            toastr()->success('successfully salary submit', '5000 has been deducted from the selected employees\' balance.');
+        }
+
+
+        return redirect()->back();
     }
 }
