@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Mpdf\Mpdf;
 use Mpdf\MpdfException;
+// use Mpdf\Mpdf;
+// use Mpdf\MpdfException;
+// use Illuminate\Http\Request;
+// use App\Models\Balance;
 // use Mpdf\Mpdf; 
 
 
@@ -26,20 +30,40 @@ class homeController extends Controller
     public function addProject()
     {
         $Designation =  Designation::latest()->get();
-        return view("addProject.addProject", compact('Designation'));
+        $User = User::latest()->get();
+        return view("addProject.addProject", compact('Designation', 'User'));
     }
 
     public function addProjectData(Request $request)
     {
         // $addUserJson = json_encode($request->AddUser);
         // dd($request->all());
+        // Add validation rules
+        $request->validate([
+            'ProjectName' => 'required|string|max:255',
+            'DirectorName' => 'required|string|max:255',
+            'Supportstaff' => 'required|string|max:255',
+            'Supportnumber' => 'required|numeric',
+            'DirectorNumber' => 'required|numeric',
+            'ProjectValue' => 'required|numeric|min:0',
+            'ProjectStart' => 'required|date',
+            'role' => 'required|string|max:50',
+            'ProjectDescription' => 'nullable|string',
+            'ProjectDivisions' => 'required|string|max:255',
+            'ProjectDistricts' => 'required|string|max:255',
+            'ProjectUpazilas' => 'required|string|max:255',
+            'TotalCapacity' => 'required|numeric|min:0',
+            'Status' => 'required|string|in:active,inactive',
+            'CurrentWorking' => 'required|numeric|min:0',
+        ]);
+
+        // Create the project after validation passes
         $project = Project::create([
             'ProjectName' =>  strtoupper($request->ProjectName),
             'ProjectDirector' =>  strtoupper($request->DirectorName),
             'StaffName' =>  strtoupper($request->Supportstaff),
             'StaffNumber' =>  strtoupper($request->Supportnumber),
             'ProjectNumber' => $request->DirectorNumber,
-            'Account' => $request->Account,
             'ProjectValue' => $request->ProjectValue,
             'ProjectStart' =>  $request->ProjectStart,
             'role' =>  $request->role,
@@ -51,6 +75,7 @@ class homeController extends Controller
             'status' => $request->Status,
             'CurrentWorking' => $request->CurrentWorking,
         ]);
+
 
 
         $ProjectDescription = $request->DescriptionRoll;
@@ -102,12 +127,35 @@ class homeController extends Controller
     }
 
     public function addEmployeeData(Request $request)
+
     {
+        $request->validate([
+            'EmployeeName' => 'required|string|max:255',
+            'projectName' => 'required|integer|exists:projects,id',
+            'FatherName' => 'required|string|max:255',
+            'DateOfBirth' => 'required|date',
+            'ActualJoinedDate' => 'required|date',
+            'BirthPlace' => 'required|string|max:255',
+            'PhoneNumber' => 'required|digits:11', // Assuming phone number is 11 digits
+            'JoiningDate' => 'required|date',
+            'NidNumber' => 'required|numeric|digits_between:10,17', // NID number between 10 and 17 digits
+            'Designation' => 'required|string|max:255',
+            'Salary' => 'required|numeric|min:0',
+            'profilePic' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Image validation for profile picture
+            'EmployeePdfOne' => 'required|mimes:pdf|max:2048', // PDF validation for PDF one
+            'EmployeePdfTwo' => 'required|mimes:pdf|max:2048', // PDF validation for PDF two
+            'EmployeePdfThree' => 'required|mimes:pdf|max:2048', // PDF validation for PDF three
+            'Account' => 'required|string|max:255',
+            'Divisions' => 'required|string|max:255',
+            'Districts' => 'required|string|max:255',
+            'Upazilas' => 'required|string|max:255',
+        ]);
         // $addUserJson = json_encode($request->AddUser);
         // dd($request->all()); 
 
         if ($request->hasFile('profilePic')) {
             $manager = new ImageManager(new Driver());
+
             $profilePic = $request->file('profilePic');
             $name_gen = hexdec(uniqid()) . '.' . $profilePic->getClientOriginalExtension();
             $img = $manager->read($profilePic);
@@ -150,6 +198,7 @@ class homeController extends Controller
                 'Pdf_one' => $savePath,
                 'Pdf_two' => $savePathTwo,
                 'Pdf_three' => $savePathThree,
+                'Account' => strtoupper($request->Account),
                 'Divisions' => strtoupper($request->Divisions),
                 'Districts' => strtoupper($request->Districts),
                 'Upazilas' => strtoupper($request->Upazilas),
@@ -217,11 +266,19 @@ class homeController extends Controller
 
     public function registerUserData(Request $request)
     {
-        // dd($request->all()); 
+        // dd($request->all());
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'role' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
 
         ]);
@@ -272,67 +329,83 @@ class homeController extends Controller
     }
 
 
+
+
     function balanceList(Request $request)
     {
-
-        try {
-            // Fetch the records for the given month and year
-            $data = Balance::with('employeeData')
+        if ($request->balance === 'balanceList') {
+            $existingRecord = Balance::with('employeeData')
                 ->where('month', $request->month)
                 ->where('year', $request->year)
                 ->get();
 
-            // Calculate the total salary
-            $totalSalary = $data->sum('actualSalary');
+            $totalSalary = $existingRecord->sum('actualSalary');
 
-            // Render the Blade template to an HTML string
-            $html = view('balancePdf', compact('data'))->render();
+            return view('balanceList', compact('existingRecord', 'totalSalary'));
+        }
 
-            // Create an instance of mPDF
-            $mpdf = new Mpdf();
 
-            // Write the rendered HTML to the PDF
-            $mpdf->WriteHTML($html);
+        if ($request->balance === 'balancePDF') {
 
-            // Output the PDF as a download
-            $mpdf->Output('balance_report.pdf', 'D');
-        } catch (MpdfException $e) {
-            // Handle mPDF exceptions
-            return response()->json(['error' => $e->getMessage()], 500);
+            // dd($request);
+            try {
+                // Fetch the records for the given month and year
+                $data = Balance::with('employeeData')
+                    ->where('month', $request->month)
+                    ->where('year', $request->year)
+                    ->get();
+
+                // Calculate the total salary
+                $totalSalary = $data->sum('actualSalary');
+
+                // Render the Blade template to an HTML string
+                $html = view('balancePdf', compact('data'))->render();
+
+                // Create an instance of mPDF
+                $mpdf = new Mpdf();
+
+                // Write the rendered HTML to the PDF
+                $mpdf->WriteHTML($html);
+
+                // Output the PDF as a download
+                $mpdf->Output('balance_report.pdf', 'D');
+            } catch (MpdfException $e) {
+                // Handle mPDF exceptions
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
     }
 
 
     function balanceDecrease(Request $request)
     {
-
+        // Validate that 'employee_ids' is required and must be an array
         $request->validate([
-            'employee_ids' => 'required|array',
+            'employee_ids' => 'required|array|min:1',  // Ensure at least 1 employee is selected
         ]);
 
-
-        if (!is_array($request->employee_ids) || empty($request->employee_ids)) {
+        // Check if the employee_ids array is empty (not needed anymore after adding min:1)
+        if (empty($request->employee_ids)) {
             toastr()->success('No employees selected.');
             return redirect()->back();
         }
 
-
-
+        // Proceed with deduction logic
         if ($request->deduction_type == "percentage") {
             DB::table('balances')
                 ->whereIn('id', $request->employee_ids)
                 ->update([
                     'actualSalary' => DB::raw('actualSalary - (actualSalary * 0.05)')
                 ]);
-            toastr()->success('successfully salary submit', '5000 has been deducted from the selected employees\' balance.');
+            toastr()->success('Cut 5% Employees\' balance.');
         }
+
         if ($request->deduction_type == "fixed") {
             DB::table('balances')
                 ->whereIn('id', $request->employee_ids)
                 ->decrement('actualSalary', 5000);
-            toastr()->success('successfully salary submit', '5000 has been deducted from the selected employees\' balance.');
+            toastr()->success('5000 has been deducted from the selected employees\' balance.');
         }
-
 
         return redirect()->back();
     }

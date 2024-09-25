@@ -11,6 +11,16 @@
                     <form action="{{ route('addProjectData') }}" method="POST">
                         @csrf
 
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Project name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
@@ -44,13 +54,20 @@
                                 placeholder="Project Value" name="ProjectValue">
                         </div>
 
+
+
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state5"> Project Role Add </label>
                             <select id="collapsible-state5" class="select2 form-select" data-allow-clear="" name="role">
                                 <option value="">Select</option>
-                                <option value="admin">Admin</option>
-                                <option value="projectManager">Project Manager</option>
-                                <option value="headManager">Head Manager</option>
+                                @foreach ($User as $item)
+                                    @php
+                                        $userCheck = $item->role === 'admin';
+                                    @endphp
+                                    @if (!$userCheck)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\employeesController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -43,129 +44,79 @@ Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
 // this is a admin area only admin can see this  
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    //  product area 
-    Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
-    Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
-    Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
-    Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
-    Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    // employee area
-    Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
-    Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
-    Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
-    Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
-    Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
-
-    // designation 
-    Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
-    Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
-    Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
-
-    // add user 
-
-    Route::get('/addUserRegister', [homeController::class, 'registerData'])->name('registerData');
-    Route::post('/registerUserData', [homeController::class, 'registerUserData'])->name('registerUserData');
-    Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
-});
-
-Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//  product area 
+Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
+Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
+Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
+Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
+Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
 
 
-    //  product area 
-    Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
-    Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
-    Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
-    Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
-    Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
+// employee area
+Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
+Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
+Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
+Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
+Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
 
+// designation 
+Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
+Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
+Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
 
-    // employee area
-    Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
-    Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
-    Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
-    Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
-    Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
+// add user 
 
-    // designation 
-    Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
-    Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
-    Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
+Route::get('/addUserRegister', [homeController::class, 'registerData'])->name('registerData');
+Route::post('/registerUserData', [homeController::class, 'registerUserData'])->name('registerUserData');
+Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
 
-    // add user 
+//add salary  
+Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balance_data');
 
-    Route::get('/addUserRegister', [homeController::class, 'registerData'])->name('registerData');
-    Route::post('/registerUserData', [homeController::class, 'registerUserData'])->name('registerUserData');
-    Route::get('/allUserArea', [homeController::class, 'alluser'])->name('allUserArea');
-});
+// balance data
 
-
-Route::group(['middleware' => ['auth', 'role:manager']], function () {
-
-
-
-    //  product area 
-    Route::get('/addProject', [homeController::class, "addProject"])->name('addProject');
-    Route::post('/addProjectData', [homeController::class, "addProjectData"])->name('addProjectData');
-    Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
-    Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
-    Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
-
-
-    // employee area
-    Route::get('/addEmployees', [homeController::class, "addEmployees"])->name('addEmployees');
-    Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->name('addEmployeeData');
-    Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
-    Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
-    Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
-
-    // designation 
-    Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');
-    Route::get('/allDesignation', [homeController::class, 'allDesignation'])->name('allDesignation');
-    Route::post('/addDesignationData', [homeController::class, 'designationData'])->name('addDesignationData');
-
-    // add user 
-});
-
-Route::group(['middleware' => ['auth', 'role:headManager']], function () {
-
-    //add salary  
-    Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balance_data');
-
-    // balance data
-
-    Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
-    Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
-    Route::post('/balanceDecrease', [homeController::class, 'balanceDecrease'])->name('deduct.selected');
-
-    // add user 
-});
+Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
+Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
+Route::post('/balanceDecrease', [homeController::class, 'balanceDecrease'])->name('deduct.selected');
 
 
 // user data form website 
 
-// project list 
+Route::group(['middleware' => ['auth', 'role:manager']], function () {
 
-Route::get('/allProjectData', [UserController::class, 'allProjectData'])->name('allProjectData');
-Route::get('/viewProjectData{id}', [UserController::class, 'viewProjectData'])->name('viewProjectData');
+    Route::get('/viewProjectDataByManager', [employeesController::class, 'getSingleData'])->name('viewProjectDataByManager');
+    Route::get('/viewProjectByManager/{id}', [employeesController::class, 'viewProjectByManager'])->name('viewProjectByManager');
 
 
-//employee list
-Route::get('/allEmployee', [UserController::class, 'allEmployeeData'])->name('allEmployee');
-Route::get('/viewEmployee{id}', [UserController::class, 'viewEmployee'])->name('viewEmployee');
+    Route::get('/viewEmployeeDataByManager', [employeesController::class, 'getSingleDataEmployee'])->name('viewEmployeeDataBy');
+    Route::get('/viewEmployeeByManager/{id}', [employeesController::class, 'viewEmployeeByManager'])->name('viewEmployeeByManager');
+});
+
+
+
+// single data 
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+
+    Route::get('/allProjectData', [UserController::class, 'allProjectData'])->name('allProjectData');
+    Route::get('/viewProjectData/{id}', [UserController::class, 'viewProjectData'])->name('viewProjectData');
+
+    Route::get('/allEmployee', [UserController::class, 'allEmployeeData'])->name('allEmployee');
+    Route::get('/viewEmployee/{id}', [UserController::class, 'viewEmployee'])->name('viewEmployee');
+});
+
+
+
+
 
 
 //add salary  
@@ -176,6 +127,19 @@ Route::post('/balance', [homeController::class, 'salaryDataInset'])->name('balan
 Route::get('/getBalanceInfo', [homeController::class, 'balanceDataShow'])->name('balance');
 Route::get('/balanceList', [homeController::class, 'balanceList'])->name('balanceList');
 Route::post('/balanceDecrease', [homeController::class, 'balanceDecrease'])->name('deduct.selected');
+
+
+
+//employee area 
+
+
+
+
+
+
+
+
+
 
 
 

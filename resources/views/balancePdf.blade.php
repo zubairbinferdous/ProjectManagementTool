@@ -126,71 +126,15 @@
         <div class="header">
             <img src="{{ asset('assets/img/products/lkskCapture.PNG') }}" alt="" class="">
         </div>
-        <div class="top-left">
-            <p>প্রতি</p>
-            <p>ব্যবস্থাপক</p>
-            <p>জনতা ব্যাংক লিমিটেড</p>
-            <p>বেগম রোকেয়া সরণী</p>
-            <p>শাখা ঢাকা</p>
-
-            <span>বিষয় : টিটিএম টি মাধ্যমে অর্থ অ্যাডভাইস প্রদান করা হবে স্থানান্তরের</span>
-        </div>
-
-
-        <div class="center">
-            <div class="center-data">
-                <p>এল কে আছিস এইচআরসি শিরোনামের তার ব্যাংক শাখার পরিচালিত চলতি হিসাব নাম্বার থেকে লোকাল গভমেন্ট কোভিড ১৯
-                    <br>
-                    রেসপন্স এন্ড রিকভারি প্রজেক্ট প্রকল্পের আয়তায় আউটসোর্সিং এর মাধ্যমে নিয়োগপ্রাপ্ত ছয় জন কর্মকর্তা
-                    ও
-                    <br>
-                    {{-- কর্মচারী 2024 মাসের বেতন ভাতার মোট সংখ্যা {{ $totalSalary }} --}}
-                </p>
-            </div>
-        </div>
-
-
-        <table>
-            <thead>
-                <tr>
-                    <th>কর্মচারীর নাম</th>
-                    <th>পদবী </th>
-                    <th>কর্মস্থল</th>
-                    <th>হিসাব রক্ষক </th>
-                    <th>অংক </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $item)
-                    <tr>
-                        <td>{{ $item->employeeData->EmployeeName }}</td>
-                        <td>{{ $item->employeeData->PhoneNumber }}</td>
-                        <td>{{ $item->employeeData->NidNumber }}</td>
-                        <td>{{ $item->employeeData->Account }}</td>
-                        <td>{{ $item->actualSalary }}</td>
-                    </tr>
-                @endforeach
-
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4" class="text-right"><strong></strong></td>
-                    {{-- <td>{{ $totalSalary }}</td> --}}
-                </tr>
-            </tfoot>
-        </table>
-
-        <div class="top-left-sign">
-            <p>মোঃ নুরুল ইসলাম</p>
-            <p> ব্যবস্থাপক </p>
-            <p>এল কেস এসএস এইচআরসি</p>
-        </div>
-
-        <div class="top-left-sign">
-            <p>মোঃ বেলাল </p>
-            <p> ব্যবস্থাপক পরিচালক </p>
-            <p>এল কে এস এস লি:</p>
-        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nobis repellendus? Autem exercitationem
+            officiis facere quia consequuntur! Sit, nam rerum eveniet natus consequatur doloremque delectus aspernatur
+            beatae consectetur eligendi pariatur quis dicta. Perferendis, dignissimos assumenda accusamus nesciunt
+            quidem quos magnam accusantium doloremque laudantium voluptatibus, id iste obcaecati magni laborum
+            repellendus consequuntur totam aspernatur ratione aperiam laboriosam? Tenetur optio nemo dolore. Incidunt,
+            in blanditiis, distinctio reprehenderit harum aliquam officiis eius earum dolores quisquam consequatur
+            explicabo animi quod nobis iure reiciendis nemo ipsum laboriosam, accusamus dolorum maiores? Reprehenderit
+            ex voluptates animi laborum incidunt ratione similique voluptatem rerum nemo! Totam reiciendis minima
+            dolorum?</p>
     </div>
 
 

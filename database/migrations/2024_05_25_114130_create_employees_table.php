@@ -30,6 +30,10 @@ return new class extends Migration
             $table->string('Divisions');
             $table->string('Districts');
             $table->string('Upazilas');
+            $table->string('pdf_one');
+            $table->string('pdf_two');
+            $table->string('pdf_three');
+            $table->string('Account');
             $table->timestamps();
         });
     }

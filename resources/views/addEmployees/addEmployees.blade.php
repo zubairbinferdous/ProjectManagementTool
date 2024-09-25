@@ -10,6 +10,16 @@
                 <div class="card-body">
                     <form action="{{ route('addEmployeeData') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname"> Employee Name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
@@ -28,6 +38,8 @@
                             <input type="file" class="form-control" name="profilePic" id="bs-validation-upload-file"
                                 required="">
                         </div>
+
+
 
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state9">Project name</label>

@@ -34,6 +34,7 @@
                     <div class="card-body">
                         <div class="user-avatar-section">
                             <div class="d-flex align-items-center flex-column">
+
                                 <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ asset($ViewEmployeeData->profilePic) }}"
                                     height="115" width="115" alt="User avatar">
                                 <div class="user-info text-center">

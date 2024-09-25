@@ -187,13 +187,14 @@
                             </div>
 
                             <div class="d-flex">
-                                <a href="{{ asset($ViewEmployeeData->Pdf_one) }}" target="_blank"
+
+                                <a href="{{ asset($ViewEmployeeData->pdf_one) }}" target="_blank"
                                     class="btn btn-info">Joining latter
                                     1</a>
-                                <a href="{{ asset($ViewEmployeeData->Pdf_two) }}" target="_blank"
+                                <a href="{{ asset($ViewEmployeeData->pdf_two) }}" target="_blank"
                                     class="btn btn-info">Joining latter
                                     2</a>
-                                <a href="{{ asset($ViewEmployeeData->Pdf_three) }}" target="_blank"
+                                <a href="{{ asset($ViewEmployeeData->pdf_three) }}" target="_blank"
                                     class="btn btn-info">Joining latter
                                     3</a>
 
