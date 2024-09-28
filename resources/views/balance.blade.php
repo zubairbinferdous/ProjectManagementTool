@@ -25,7 +25,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="collapsible-state19">Select Year</label>
                                 <select id="collapsible-state19" class="select2 form-select" data-allow-clear="true"
-                                    name="year">
+                                    name="year" required>
                                     @foreach ($year as $item)
                                         <option value="{{ $item->year }}"> {{ $item->year }} </option>
                                     @endforeach
@@ -35,7 +35,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="collapsible-state20">Select Month</label>
                                 <select id="collapsible-state20" class="select2 form-select" data-allow-clear="true"
-                                    name="month">
+                                    name="month" required>
                                     <option selected=""> Select Month</option>
                                     <option value="January">January</option>
                                     <option value="February">February</option>

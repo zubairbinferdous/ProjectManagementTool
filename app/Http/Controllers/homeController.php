@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Descriptor\Descriptor;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Mpdf\Mpdf;
 use Mpdf\MpdfException;
+use Illuminate\Support\Facades\Log as FacadesLog;
+use Illuminate\Support\Facades\Log;
+use Mpdf\Mpdf;
+use Illuminate\Support\Facades\View;
+
+
+
 // use Mpdf\Mpdf;
 // use Mpdf\MpdfException;
 // use Illuminate\Http\Request;
@@ -52,9 +58,9 @@ class homeController extends Controller
             'ProjectDivisions' => 'required|string|max:255',
             'ProjectDistricts' => 'required|string|max:255',
             'ProjectUpazilas' => 'required|string|max:255',
-            'TotalCapacity' => 'required|numeric|min:0',
-            'Status' => 'required|string|in:active,inactive',
-            'CurrentWorking' => 'required|numeric|min:0',
+            'TotalCapacity' => 'required|string',
+            'Status' => 'required|string',
+            'CurrentWorking' => 'required|string',
         ]);
 
         // Create the project after validation passes
@@ -347,8 +353,12 @@ class homeController extends Controller
 
         if ($request->balance === 'balancePDF') {
 
-            // dd($request);
+
             try {
+
+
+
+
                 // Fetch the records for the given month and year
                 $data = Balance::with('employeeData')
                     ->where('month', $request->month)
@@ -358,19 +368,47 @@ class homeController extends Controller
                 // Calculate the total salary
                 $totalSalary = $data->sum('actualSalary');
 
-                // Render the Blade template to an HTML string
-                $html = view('balancePdf', compact('data'))->render();
+                // $pdf = PDF::loadView('balancePdf', [
+                //     'data' => $data,
+                //     'img' => public_path('lkskCapture.PNG'),
+                //     'totalSalary' => $totalSalary,
+                // ]);
+                // return $pdf->stream('user.pdf');
 
-                // Create an instance of mPDF
-                $mpdf = new Mpdf();
+                $pdfData = [
+                    'data' => $data,
+                    'img' => public_path('lkskCapture.PNG'),
+                    'totalSalary' => $totalSalary,
+                ];
 
-                // Write the rendered HTML to the PDF
-                $mpdf->WriteHTML($html);
+                $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+                $fontDirs = $defaultConfig['fontDir'];
 
-                // Output the PDF as a download
-                $mpdf->Output('balance_report.pdf', 'D');
-            } catch (MpdfException $e) {
-                // Handle mPDF exceptions
+                $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+                $fontData = $defaultFontConfig['fontdata'];
+
+                $path = public_path('font');
+
+                // dd($path);
+                // $view = view('balancePdf', $pdfData)->render();
+
+                $mpdf = new Mpdf([
+                    'format' => 'A4',
+                    'orientation' => 'P',
+                    'fontDir' => array_merge($fontDirs, [$path]),
+                    'fontdata' => $fontData + [
+                        'solaimanlipi' => [
+                            "R" => 'SolaimanLipi.ttf',
+                            'useOTL' => 0xFF,
+                        ],
+                    ],
+                    'default_font' => 'solaimanlipi'
+                ]);
+                $mpdf->WriteHTML(view('balancePdf', $pdfData));
+                return $mpdf->Output('document.pdf', 'I');
+            } catch (\Mpdf\MpdfException $e) {
+                // Log the error for debugging//
+                Log::error('PDF Generation Failed: ' . $e->getMessage());
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }

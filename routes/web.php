@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\PDF;
+
 
 
 /*
@@ -37,12 +39,17 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('auth.login');
 });
-// Route::get('/', function () {
-//     return view('balancePdf');
-// });
+Route::get('/pdf', function () {
+    return view('balancePdf');
+});
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/pdfGenaretor', function () {
+//     $pdf = PDF::loadView('balancePdf');
+//     return $pdf->stream('user.pdf');
+// })->name('pdfGenaretor');
 
 
 

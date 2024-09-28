@@ -7,134 +7,121 @@
     <title>Employee Salary Details</title>
     <style>
         body {
-            font-family: 'Arial, Helvetica, sans-serif';
+            /* font-family: 'NotoSansBangla', sans-serif; */
+            /* Use your Bangla font */
             margin: 20px;
-        }
-
-        .container {
-            width: 95%;
-            margin: 0 auto;
-            padding: 20px;
-
+            padding: 0;
+            overflow-x: auto;
+            /* Allow horizontal scrolling for small screens */
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #333;
         }
+
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            page-break-inside: auto;
+            /* Allow breaking inside table */
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid #ddd;
+        thead {
+            background-color: #f7f7f7;
+            /* Dark background for the header */
+            color: rgb(26, 26, 26);
+            /* White text for header */
         }
 
         th,
         td {
             padding: 10px;
             text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        tfoot tr {
-            background-color: #f9f9f9;
-            font-weight: bold;
-        }
-
-        .text-right {
-            text-align: right;
-        }
-
-        .header {
-            text-align: center
-        }
-
-        .header img {
-            width: 80%;
-            height: 130px;
-
-        }
-
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center
-        }
-
-        .last {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .data-one {
-            width: 30%;
-            border: 2px soild black;
-            padding-top: 100px;
-        }
-
-        .data-two {
-            width: 30%;
-            border: 2px soild black;
-            padding-top: 100px;
-        }
-
-        .data-one p {
-            text-align: center;
+            border: 1px solid #000000;
+            word-wrap: break-word;
             font-size: 10px;
+            /* Allow breaking long text */
         }
 
-        .data-two p {
-            text-align: center;
-            font-size: 10px;
+        tbody tr:hover {
+            background-color: #f1f1f1;
+            /* Light gray on hover */
         }
 
-        th,
-        td {
-            padding: 5px;
-            font-size: 14px;
-            text-align: left;
+        .total-row {
+            /* font-weight: bold; */
+            background-color: #f8f9fa;
+            /* Light background for total row */
         }
 
-        th {
-            background-color: #ffffff;
-            color: #333;
-        }
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            table {
+                font-size: 8px;
+                /* Adjust font size for small screens */
+            }
 
-        .top-left-sign p {
-            font-size: 10px;
+            th,
+            td {
+                padding: 5px;
+                /* Reduce padding for smaller screens */
+            }
         }
     </style>
 </head>
 
 <body>
-    <form>
-        <button type="submit">hello</button>
-    </form>
     <div class="container">
 
         <div class="header">
-            <img src="{{ asset('assets/img/products/lkskCapture.PNG') }}" alt="" class="">
+
+            <img src="{{ $img }}" alt="" style="width:100%; height:auto; margin-bottom:30px;">
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, nobis repellendus? Autem exercitationem
-            officiis facere quia consequuntur! Sit, nam rerum eveniet natus consequatur doloremque delectus aspernatur
-            beatae consectetur eligendi pariatur quis dicta. Perferendis, dignissimos assumenda accusamus nesciunt
-            quidem quos magnam accusantium doloremque laudantium voluptatibus, id iste obcaecati magni laborum
-            repellendus consequuntur totam aspernatur ratione aperiam laboriosam? Tenetur optio nemo dolore. Incidunt,
-            in blanditiis, distinctio reprehenderit harum aliquam officiis eius earum dolores quisquam consequatur
-            explicabo animi quod nobis iure reiciendis nemo ipsum laboriosam, accusamus dolorum maiores? Reprehenderit
-            ex voluptates animi laborum incidunt ratione similique voluptatem rerum nemo! Totam reiciendis minima
-            dolorum?</p>
+
+        <h1>আমি তোমায় ভালোবাসি </h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>NID</th>
+                    <th>Paid Salary</th>
+                    <th>Paid Salary</th>
+                    <th>Paid Salary</th>
+                    <th>Paid Salary</th>
+                    <th>Paid Salary</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data as $key => $item)
+                    <tr>
+                        <td>{{ $key + 1 }}</td> <!-- Start numbering from 1 -->
+                        <td>{{ $item->employeeData->EmployeeName }}</td>
+                        <td>{{ $item->employeeData->PhoneNumber }}</td>
+                        <td>{{ $item->employeeData->NidNumber }}</td>
+                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td> <!-- Format salary and add currency -->
+                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td> <!-- Format salary and add currency -->
+                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td> <!-- Format salary and add currency -->
+                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td> <!-- Format salary and add currency -->
+                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td> <!-- Format salary and add currency -->
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="8" style="text-align: right;"><strong>Total Salary:</strong></td>
+                    <td colspan="1">{{ number_format($totalSalary, 2) }} BDT</td> <!-- Format total salary -->
+                </tr>
+            </tfoot>
+        </table>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus eligendi commodi corrupti ratione, aspernatur
+            amet quam, unde assumenda consequuntur earum, iure velit. Odit illum qui accusantium asperiores sint. Sit,
+            tenetur?</p>
     </div>
 
 
