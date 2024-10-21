@@ -59,8 +59,7 @@
 
                             <button class="btn btn-success" type="submit" name="balance" value="balancePDF">Download
                                 Balance List </button>
-                            <button class="btn btn-success" type="submit" name="balance" value="balancePDF">Download
-                                Balance Note </button>
+
                         </div>
                     </form>
 

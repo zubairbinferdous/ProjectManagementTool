@@ -29,6 +29,7 @@
                                 <th>Phone Number</th>
                                 <th>NID</th>
                                 <th>Project Name</th>
+                                <th>edit</th>
 
                             </tr>
                         </thead>
@@ -49,6 +50,9 @@
                                     <td>{{ $item->PhoneNumber }}</td>
                                     <td>{{ $item->NidNumber }}</td>
                                     <td>{{ $item->projectData->ProjectName }}</td>
+                                    <td> <a class="dropdown-item" href="{{ route('getSingleEmployee', $item->id) }}"><i
+                                                class="ti ti-pencil me-1"></i>
+                                            Edit</a></td>
                                 </tr>
                             @endforeach
 

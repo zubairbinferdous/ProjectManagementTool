@@ -80,6 +80,13 @@
 
 
                         <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Appointment Issue Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                placeholder="YYYY-MM-DD" readonly="readonly" name="DateAppointment">
+                        </div>
+
+
+                        <div class="md-3">
                             <label class="form-label" for="multicol-birthdate">Employee Joining Date</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
                                 placeholder="YYYY-MM-DD" readonly="readonly" name="JoiningDate" placeholder="YYYY-MM-DD">
@@ -94,7 +101,7 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="phone-nid-number">Employee Nid Number</label>
-                            <input required type="text" id="phone-nid-number" class="form-control "
+                            <input required type="text" id="" class="form-control "
                                 placeholder="Employee Nid Number" name="NidNumber">
                         </div>
 

@@ -151,25 +151,52 @@
                     </li>
                     <!-- Dashboards -->
 
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                            <div data-i18n="Dashboards"> Designation Area</div>
+                    @if (Auth::check() && Auth::user()->role == 'admin')
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                                <div data-i18n="Dashboards"> Designation Area</div>
 
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('addDesignation') }}" class="menu-link">
-                                    <div data-i18n="Email">Add Designation </div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href=" {{ route('allDesignation') }} " class="menu-link">
-                                    <div data-i18n="Email">All Designation </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('addDesignation') }}" class="menu-link">
+                                        <div data-i18n="Email">Add Designation </div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href=" {{ route('allDesignation') }} " class="menu-link">
+                                        <div data-i18n="Email">All Designation </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                                <div data-i18n="Dashboards">User Area</div>
+
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ route('registerData') }}" class="menu-link">
+                                        <div data-i18n="Email">Add User </div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href=" {{ route('allUserArea') }} " class="menu-link">
+                                        <div data-i18n="Email">All User </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+
+
+
+
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -182,11 +209,14 @@
                                     <div data-i18n="Email">Add Project </div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="{{ route('allProject') }}" class="menu-link">
-                                    <div data-i18n="Email">All Project </div>
-                                </a>
-                            </li>
+
+                            @if (Auth::check() && Auth::user()->role == 'admin')
+                                <li class="menu-item">
+                                    <a href="{{ route('allProject') }}" class="menu-link">
+                                        <div data-i18n="Email">All Project </div>
+                                    </a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                     <li class="menu-item">
@@ -201,32 +231,19 @@
                                     <div data-i18n="Email">Add Employees </div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href=" {{ route('allEmployeeData') }} " class="menu-link">
-                                    <div data-i18n="Email">All Employees </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                            <div data-i18n="Dashboards">User Area</div>
 
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="{{ route('registerData') }}" class="menu-link">
-                                    <div data-i18n="Email">Add User </div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href=" {{ route('allUserArea') }} " class="menu-link">
-                                    <div data-i18n="Email">All User </div>
-                                </a>
-                            </li>
+
+                            @if (Auth::check() && Auth::user()->role == 'admin')
+                                <li class="menu-item">
+                                    <a href=" {{ route('allEmployeeData') }} " class="menu-link">
+                                        <div data-i18n="Email">All Employees </div>
+                                    </a>
+                                </li>
+                            @endif
+
                         </ul>
                     </li>
+
 
                 </ul>
 

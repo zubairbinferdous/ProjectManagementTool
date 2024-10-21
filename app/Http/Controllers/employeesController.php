@@ -30,10 +30,11 @@ class employeesController extends Controller
     public function getSingleDataEmployee()
     {
         $user_id = Auth::user()->id;
-        // dd($user_id);
+
         $getDataProjectIds = Project::where('role', $user_id)->pluck('id');
-        $getDataEmployee = Employee::where('project_id', $getDataProjectIds)->get();
-        // dd($getDataEmployee);
+
+        $getDataEmployee = Employee::whereIn('project_id', $getDataProjectIds)->get();
+
         return view('user.allEmployeeDataByManager', compact('getDataEmployee'));
     }
 

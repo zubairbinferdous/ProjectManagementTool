@@ -39,9 +39,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/pdf', function () {
-    return view('balancePdf');
-});
+// Route::get('/', function () {
+//     return view('balancePdf');
+// });
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');

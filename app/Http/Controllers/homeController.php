@@ -355,25 +355,19 @@ class homeController extends Controller
 
 
             try {
-
-
-
-
                 // Fetch the records for the given month and year
                 $data = Balance::with('employeeData')
                     ->where('month', $request->month)
                     ->where('year', $request->year)
                     ->get();
 
+                // Check if data is not empty
+                if ($data->isEmpty()) {
+                    return redirect()->back()->with('error', 'No data found for the given month and year.');
+                }
+
                 // Calculate the total salary
                 $totalSalary = $data->sum('actualSalary');
-
-                // $pdf = PDF::loadView('balancePdf', [
-                //     'data' => $data,
-                //     'img' => public_path('lkskCapture.PNG'),
-                //     'totalSalary' => $totalSalary,
-                // ]);
-                // return $pdf->stream('user.pdf');
 
                 $pdfData = [
                     'data' => $data,
@@ -381,6 +375,7 @@ class homeController extends Controller
                     'totalSalary' => $totalSalary,
                 ];
 
+                // Default font configuration for mpdf
                 $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
                 $fontDirs = $defaultConfig['fontDir'];
 
@@ -389,10 +384,8 @@ class homeController extends Controller
 
                 $path = public_path('font');
 
-                // dd($path);
-                // $view = view('balancePdf', $pdfData)->render();
-
-                $mpdf = new Mpdf([
+                // Creating the PDF with mPDF
+                $mpdf = new \Mpdf\Mpdf([
                     'format' => 'A4',
                     'orientation' => 'P',
                     'fontDir' => array_merge($fontDirs, [$path]),
@@ -404,6 +397,8 @@ class homeController extends Controller
                     ],
                     'default_font' => 'solaimanlipi'
                 ]);
+
+                // Write HTML to the PDF and Output
                 $mpdf->WriteHTML(view('balancePdf', $pdfData));
                 return $mpdf->Output('document.pdf', 'I');
             } catch (\Mpdf\MpdfException $e) {

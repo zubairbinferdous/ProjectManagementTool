@@ -40,7 +40,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Support staff</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Project Name" name="Supportstaff">
+                                placeholder="Support staff" name="Supportstaff">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Support number</label>
@@ -49,9 +49,9 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Project Value</label>
+                            <label class="form-label" for="basic-default-fullname">Contract Value</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Project Value" name="ProjectValue">
+                                placeholder="Contract Value" name="ProjectValue">
                         </div>
 
 
@@ -77,11 +77,12 @@
                             <label class="form-label" for="multicol-birthdate">Project Start Date</label>
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
                                 placeholder="YYYY-MM-DD" readonly="readonly" name="ProjectStart" placeholder="YYYY-MM-DD">
-                        </div> <br>
+                        </div>
+                        <br>
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-message">Project Description</label>
-                            <textarea id="basic-default-message" class="form-control" rows="6" placeholder="Project Description"
+                            <label class="form-label" for="basic-default-message">Contract Description</label>
+                            <textarea id="basic-default-message" class="form-control" rows="6" placeholder="Contract Description"
                                 name="ProjectDescription"></textarea>
                         </div>
 
@@ -185,9 +186,9 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-phone">Project Total Capacity</label>
+                            <label class="form-label" for="basic-default-phone"> Total Employe</label>
                             <input required type="number" id="basic-default-phone" class="form-control phone-mask"
-                                placeholder="Total Capacity" name="TotalCapacity">
+                                placeholder="Total Employe" name="TotalCapacity">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-phone">Current Working</label>
@@ -203,6 +204,14 @@
                                 <option value="Active">Active</option>
                                 <option value="Close">Close</option>
                             </select>
+                        </div>
+
+
+                        <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Project End Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                placeholder="YYYY-MM-DD" readonly="readonly" name="ProjectStart"
+                                placeholder="YYYY-MM-DD">
                         </div>
 
 
@@ -238,42 +247,12 @@
 
                             <div id="add_designation"></div>
 
-                            {{-- <div class="add_designation">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="collapsible-state3"> Description </label>
-                                        <select id="collapsible-state3" class="select2 form-select"
-                                            data-allow-clear="true" name="ProjectDescription">
-                                            <option value="">Select</option>
-                                            @foreach ($Designation as $item)
-                                                <option value="{{ $item->designations }}">{{ $item->designations }}
-                                                </option>
-                                            @endforeach
 
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="basic-default-phone">Asign memeber</label>
-                                        <input required type="number" id="basic-default-phone"
-                                            class="form-control phone-mask" placeholder="Total Capacity"
-                                            name="AsignMemeber">
-                                    </div>
-                                </div>
-                            </div> --}}
                         </div>
 
                         <br><br><br>
 
-                        {{-- <div class="mb-3">
-                            <label class="form-label" for="collapsible-state">Add Employees</label>
-                            <select id="collapsible-state" class="select2 form-select" multiple data-allow-clear="true"
-                                name="AddUser[]">
-                                <option value="">Select Employees</option>
-                                @foreach ($EmployeeData as $item)
-                                    <option value="{{ $item->EmployeeName }}">{{ $item->EmployeeName }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
+
 
 
                         <button type="submit" class="btn btn-primary waves-effect waves-light">Submit </button>
