@@ -29,7 +29,7 @@
                                 <th>Phone Number</th>
                                 <th>NID</th>
                                 <th>Project Name</th>
-                                <th>edit</th>
+                                <th>Action</th>
 
                             </tr>
                         </thead>
@@ -55,9 +55,22 @@
                                     <td>{{ $item->PhoneNumber }}</td>
                                     <td>{{ $item->NidNumber }}</td>
                                     <td>{{ $item->projectData->ProjectName }}</td>
-                                    <td> <a class="" href="{{ route('getSingleEmployee', $item->id) }}"><i
-                                                class="ti ti-pencil me-1"></i>
-                                            Edit</a></td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ti ti-dots-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu" style="">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('getSingleEmployee', $item->id) }}"><i
+                                                        class="ti ti-pencil me-1"></i>
+                                                    Edit</a>
+                                                <a class="dropdown-item" href="{{ route('getEmployeeData', $item->id) }}"><i
+                                                        class="ti ti-trash me-1"></i>Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
 

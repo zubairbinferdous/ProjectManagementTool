@@ -119,7 +119,8 @@ class homeController extends Controller
     public function getSingleProject($id)
     {
         $singleProject = Project::with('designation')->where("id", $id)->first();
-        return view('addProject.editProject', compact('singleProject'));
+        $User = User::latest()->get();
+        return view('addProject.editProject', compact('singleProject', 'User'));
     }
 
 
@@ -142,7 +143,7 @@ class homeController extends Controller
             'DateOfBirth' => 'required|date',
             'ActualJoinedDate' => 'required|date',
             'BirthPlace' => 'required|string|max:255',
-            'PhoneNumber' => 'required|digits:11', // Assuming phone number is 11 digits
+            'PhoneNumber' => 'required', // Assuming phone number is 11 digits
             'JoiningDate' => 'required|date',
             'NidNumber' => 'required|numeric|digits_between:10,17', // NID number between 10 and 17 digits
             'Designation' => 'required|string|max:255',
@@ -197,6 +198,7 @@ class homeController extends Controller
                 'BirthPlace' => strtoupper($request->BirthPlace),
                 'PhoneNumber' => $request->PhoneNumber,
                 'JoiningDate' => $request->JoiningDate,
+                'DateAppointment' => $request->DateAppointment,
                 'NidNumber' => $request->NidNumber,
                 'Designation' => strtoupper($request->Designation),
                 'Salary' => $request->Salary,

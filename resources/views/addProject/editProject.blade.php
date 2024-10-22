@@ -12,61 +12,66 @@
                         @csrf
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Project name</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->ProjectName }}" name="ProjectName">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Director name</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->ProjectDirector }}" name="DirectorName">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Director number</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->ProjectNumber }}" name="DirectorNumber">
+                            <label class="form-label" for="project-name">Project Name</label>
+                            <input type="text" class="form-control" id="project-name"
+                                value="{{ $singleProject->ProjectName }}" name="ProjectName">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Support staff</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->StaffName }}" name="Supportstaff">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Support number</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->StaffNumber }}" name="Supportnumber">
+                            <label class="form-label" for="director-name">Director Name</label>
+                            <input type="text" class="form-control" id="director-name"
+                                value="{{ $singleProject->ProjectDirector }}" name="DirectorName">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="basic-default-fullname">Project Value</label>
-                            <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="{{ $singleProject->ProjectValue }}" name="ProjectValue">
+                            <label class="form-label" for="director-number">Director Number</label>
+                            <input type="text" class="form-control" id="director-number"
+                                value="{{ $singleProject->ProjectNumber }}" name="DirectorNumber">
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="support-staff">Support Staff</label>
+                            <input type="text" class="form-control" id="support-staff"
+                                value="{{ $singleProject->StaffName }}" name="Supportstaff">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="support-number">Support Number</label>
+                            <input type="text" class="form-control" id="support-number"
+                                value="{{ $singleProject->StaffNumber }}" name="Supportnumber">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="project-value">Project Value</label>
+                            <input type="text" class="form-control" id="project-value"
+                                value="{{ $singleProject->ProjectValue }}" name="ProjectValue">
+                        </div>
+
 
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state5"> Project Role Add </label>
                             <select id="collapsible-state5" class="select2 form-select" data-allow-clear="" name="role">
-                                <option value="">Select</option>
-                                <option value="admin">Admin</option>
-                                <option value="projectManager">Project Manager</option>
-                                <option value="headManager">Head Manager</option>
+
+
+                                @foreach ($User as $item)
+                                    @php
+                                        $userCheck = $item->role === 'admin';
+                                    @endphp
+
+                                    @if ($item->id === $singleProject->role)
+                                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                    @endif
+                                    @if (!$userCheck)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif
+                                @endforeach
+
                             </select>
                         </div>
 
 
 
-                        <div class="md-3">
-                            <label class="form-label" for="multicol-birthdate">Project Start Date</label>
-                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
-                                placeholder="{{ $singleProject->ProjectStart }}" readonly="readonly" name="ProjectStart">
-                        </div> <br>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-message">Project Description</label>
-                            <textarea id="basic-default-message" class="form-control" rows="6"
-                                placeholder="{{ $singleProject->ProjectDescription }}" name="ProjectDescription"></textarea>
-                        </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state4"> Project Divisions </label>

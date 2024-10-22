@@ -99,6 +99,8 @@
                                 placeholder="YYYY-MM-DD">
                         </div>
 
+                        <br>
+
                         <div class="mb-3">
                             <label class="form-label" for="phone-nid-number">Employee Nid Number</label>
                             <input required type="text" id="" class="form-control "
@@ -218,7 +220,7 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 1 </label>
+                            <label class="form-label" for="bs-validation-upload-file"> CV </label>
                             <input type="file" class="form-control" name="EmployeePdfOne"
                                 id="bs-validation-upload-file" required="">
                         </div>
@@ -226,7 +228,7 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 2 </label>
+                            <label class="form-label" for="bs-validation-upload-file"> Appointment Letter </label>
                             <input type="file" class="form-control" name="EmployeePdfTwo"
                                 id="bs-validation-upload-file" required="">
                         </div>
@@ -235,7 +237,7 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="bs-validation-upload-file">Employee PDF 3 </label>
+                            <label class="form-label" for="bs-validation-upload-file"> Joining Letter </label>
                             <input type="file" class="form-control" name="EmployeePdfThree"
                                 id="bs-validation-upload-file" required="">
                         </div>

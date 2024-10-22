@@ -186,17 +186,17 @@
 
                             </div>
 
-                            <div class="d-flex">
 
+                            <div class="">
                                 <a href="{{ asset($ViewEmployeeData->pdf_one) }}" target="_blank"
-                                    class="btn btn-info">Joining latter
-                                    1</a>
+                                    class="btn btn-info">CV
+                                </a>
                                 <a href="{{ asset($ViewEmployeeData->pdf_two) }}" target="_blank"
-                                    class="btn btn-info">Joining latter
-                                    2</a>
+                                    class="btn btn-info">Appointment Letter
+                                </a>
                                 <a href="{{ asset($ViewEmployeeData->pdf_three) }}" target="_blank"
-                                    class="btn btn-info">Joining latter
-                                    3</a>
+                                    class="btn btn-info">Joining Letter
+                                </a>
 
                             </div>
                         </div>

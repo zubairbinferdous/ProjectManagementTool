@@ -16,6 +16,7 @@
                                 <th>Project Director Number</th>
                                 <th>Project Working Capacity</th>
                                 <th>Project Status</th>
+                                <th>action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,24 @@
                                         <td class=""><span class="badge bg-label-danger">{{ $item->status }}</span>
                                         </td>
                                     @endif
+
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ti ti-dots-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu" style="">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('getSingleProject', $item->id) }}"><i
+                                                        class="ti ti-pencil me-1"></i>
+                                                    Edit</a>
+                                                <a class="dropdown-item" href="{{ route('getProjectData', $item->id) }}"><i
+                                                        class="ti ti-trash me-1"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
 
 
                                 </tr>

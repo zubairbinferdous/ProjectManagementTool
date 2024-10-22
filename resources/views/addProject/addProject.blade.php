@@ -214,6 +214,8 @@
                                 placeholder="YYYY-MM-DD">
                         </div>
 
+                        <br><br>
+
 
                         <div id="">
                             <div class="row">
@@ -236,6 +238,7 @@
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="col-md-6">
                                     <label class="form-label" for="basic-default-phone">Assign member</label>
                                     <input required type="number" id="basic-default-phone"
