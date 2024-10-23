@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Descriptor\Descriptor;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 use Mpdf\MpdfException;
 use Illuminate\Support\Facades\Log as FacadesLog;
 use Illuminate\Support\Facades\Log;
@@ -53,6 +54,7 @@ class homeController extends Controller
             'DirectorNumber' => 'required|numeric',
             'ProjectValue' => 'required|numeric|min:0',
             'ProjectStart' => 'required|date',
+            'ProjectEnd' => 'required|date',
             'role' => 'required|string|max:50',
             'ProjectDescription' => 'nullable|string',
             'ProjectDivisions' => 'required|string|max:255',
@@ -72,6 +74,7 @@ class homeController extends Controller
             'ProjectNumber' => $request->DirectorNumber,
             'ProjectValue' => $request->ProjectValue,
             'ProjectStart' =>  $request->ProjectStart,
+            'ProjectEnd' =>  $request->ProjectEnd,
             'role' =>  $request->role,
             'ProjectDescription' => $request->ProjectDescription,
             'ProjectDivisions' => strtoupper($request->ProjectDivisions),
@@ -96,7 +99,14 @@ class homeController extends Controller
 
 
         toastr()->success('successfully project submit');
-        return redirect()->back();
+
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('allProject');
+        }
+
+        if (Auth::user()->role == 'manager') {
+            return redirect()->route('viewProjectDataByManager');
+        }
     }
 
 
@@ -111,6 +121,7 @@ class homeController extends Controller
     {
 
         Project::findOrFail($id)->delete();
+
         toastr()->warning('successfully delete project ');
         return redirect()->back();
     }
@@ -118,9 +129,65 @@ class homeController extends Controller
 
     public function getSingleProject($id)
     {
+        $Designation =  Designation::latest()->get();
         $singleProject = Project::with('designation')->where("id", $id)->first();
+
+        // return $singleProject;
         $User = User::latest()->get();
-        return view('addProject.editProject', compact('singleProject', 'User'));
+        return view('addProject.editProject', compact('singleProject', 'User', 'Designation'));
+    }
+
+    public function editProjectData(Request $request, $id)
+    {
+
+        $request->validate([
+            'ProjectName' => 'required|string|max:255',
+            'DirectorName' => 'required|string|max:255',
+            'Supportstaff' => 'required|string|max:255',
+            'Supportnumber' => 'required|numeric',
+            'DirectorNumber' => 'required|numeric',
+            'ProjectValue' => 'required|numeric|min:0',
+            'ProjectStart' => 'required|date',
+            'ProjectEnd' => 'required|date',
+            'role' => 'required|string|max:50',
+            'ProjectDescription' => 'nullable|string',
+            'ProjectDivisions' => 'required|string|max:255',
+            'ProjectDistricts' => 'required|string|max:255',
+            'ProjectUpazilas' => 'required|string|max:255',
+            'TotalCapacity' => 'required|string',
+            'Status' => 'required|string',
+            'CurrentWorking' => 'required|string',
+        ]);
+        $project = Project::findOrFail($id);
+
+        // Update the project details
+        $project->update([
+            'ProjectName' => strtoupper($request->ProjectName),
+            'ProjectDirector' => strtoupper($request->DirectorName),
+            'StaffName' => strtoupper($request->Supportstaff),
+            'StaffNumber' => $request->Supportnumber,
+            'ProjectNumber' => $request->DirectorNumber,
+            'ProjectValue' => $request->ProjectValue,
+            'ProjectStart' => $request->ProjectStart,
+            'ProjectEnd' => $request->ProjectEnd,
+            'role' => $request->role,
+            'ProjectDescription' => $request->ProjectDescription,
+            'ProjectDivisions' => strtoupper($request->ProjectDivisions),
+            'ProjectDistricts' => strtoupper($request->ProjectDistricts),
+            'ProjectUpazilas' => strtoupper($request->ProjectUpazilas),
+            'TotalCapacity' => $request->TotalCapacity,
+            'status' => $request->Status,
+            'CurrentWorking' => $request->CurrentWorking,
+        ]);
+
+        toastr()->success('successfully project update');
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('allProject');
+        }
+
+        if (Auth::user()->role == 'manager') {
+            return redirect()->route('viewProjectDataByManager');
+        }
     }
 
 
@@ -134,7 +201,6 @@ class homeController extends Controller
     }
 
     public function addEmployeeData(Request $request)
-
     {
         $request->validate([
             'EmployeeName' => 'required|string|max:255',
@@ -145,7 +211,7 @@ class homeController extends Controller
             'BirthPlace' => 'required|string|max:255',
             'PhoneNumber' => 'required', // Assuming phone number is 11 digits
             'JoiningDate' => 'required|date',
-            'NidNumber' => 'required|numeric|digits_between:10,17', // NID number between 10 and 17 digits
+            'NidNumber' => 'required', // NID number between 10 and 17 digits
             'Designation' => 'required|string|max:255',
             'Salary' => 'required|numeric|min:0',
             'profilePic' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Image validation for profile picture
@@ -211,11 +277,113 @@ class homeController extends Controller
                 'Districts' => strtoupper($request->Districts),
                 'Upazilas' => strtoupper($request->Upazilas),
             ]);
+
             toastr()->success('successfully employee submit');
-            return redirect()->back();
+
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('allEmployeeData');
+            }
+
+            if (Auth::user()->role == 'manager') {
+                return redirect()->route('viewEmployeeDataBy');
+            }
         } else {
             // Handle the error - file not uploaded
             return response()->json(['error' => 'No file uploaded in this from'], 400);
+        }
+    }
+
+    function editEmployeData(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'EmployeeName' => 'required|string|max:255',
+            'projectName' => 'required|integer|exists:projects,id',
+            'FatherName' => 'required|string|max:255',
+            'DateOfBirth' => 'required|date',
+            'ActualJoinedDate' => 'required|date',
+            'BirthPlace' => 'required|string|max:255',
+            'PhoneNumber' => 'required', // Assuming phone number is 11 digits
+            'JoiningDate' => 'required|date',
+            'NidNumber' => 'required', // NID number between 10 and 17 digits
+            'Designation' => 'required|string|max:255',
+            'Salary' => 'required|numeric|min:0',
+            'profilePic' => 'image|mimes:jpg,jpeg,png|max:2048', // Image validation for profile picture
+            'EmployeePdfOne' => 'mimes:pdf|max:2048', // PDF validation for PDF one
+            'EmployeePdfTwo' => 'mimes:pdf|max:2048', // PDF validation for PDF two
+            'EmployeePdfThree' => 'mimes:pdf|max:2048', // PDF validation for PDF three
+            'Account' => 'required|string|max:255',
+            'Divisions' => 'required|string|max:255',
+            'Districts' => 'required|string|max:255',
+            'Upazilas' => 'required|string|max:255',
+        ]);
+
+        // Retrieve the existing employee record
+        $employee = Employee::findOrFail($id);
+
+        // Update fields that are not file uploads
+        $employee->EmployeeName = strtoupper($request->EmployeeName);
+        $employee->project_id = $request->projectName;
+        $employee->FatherName = strtoupper($request->FatherName);
+        $employee->DateOfBirth = $request->DateOfBirth;
+        $employee->ActualJoinedDate = $request->ActualJoinedDate;
+        $employee->BirthPlace = strtoupper($request->BirthPlace);
+        $employee->PhoneNumber = $request->PhoneNumber;
+        $employee->JoiningDate = $request->JoiningDate;
+        $employee->DateAppointment = $request->DateAppointment;
+        $employee->NidNumber = $request->NidNumber;
+        $employee->Designation = strtoupper($request->Designation);
+        $employee->Salary = $request->Salary;
+        $employee->Account = strtoupper($request->Account);
+        $employee->Divisions = strtoupper($request->Divisions);
+        $employee->Districts = strtoupper($request->Districts);
+        $employee->Upazilas = strtoupper($request->Upazilas);
+
+        // Handle file uploads if they are provided
+        if ($request->hasFile('profilePic')) {
+            // Process profile picture
+            $manager = new ImageManager(new Driver());
+            $profilePic = $request->file('profilePic');
+            $name_gen = hexdec(uniqid()) . '.' . $profilePic->getClientOriginalExtension();
+            $img = $manager->read($profilePic);
+            $img = $img->resize(200, 200);
+            $img->toJpeg(80)->save('upload/project/' . $name_gen);
+            $employee->profilePic = 'upload/project/' . $name_gen; // Update profilePic path
+        }
+
+        // Check and update PDFs if provided
+        if ($request->hasFile('EmployeePdfOne')) {
+            $pdfFile = $request->file('EmployeePdfOne');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+            $employee->Pdf_one = 'upload/project/' . $name_gen; // Update path for PDF one
+        }
+
+        if ($request->hasFile('EmployeePdfTwo')) {
+            $pdfFile = $request->file('EmployeePdfTwo');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+            $employee->Pdf_two = 'upload/project/' . $name_gen; // Update path for PDF two
+        }
+
+        if ($request->hasFile('EmployeePdfThree')) {
+            $pdfFile = $request->file('EmployeePdfThree');
+            $name_gen = hexdec(uniqid()) . '.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('upload/project'), $name_gen);
+            $employee->Pdf_three = 'upload/project/' . $name_gen; // Update path for PDF three
+        }
+
+        // Save the updated employee record
+        $employee->save();
+
+        toastr()->success('successfully employee update');
+
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('allEmployeeData');
+        }
+
+        if (Auth::user()->role == 'manager') {
+            return redirect()->route('viewEmployeeDataBy');
         }
     }
 

@@ -29,7 +29,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname"> Employee Father Name</label>
                             <input required type="text" class="form-control" id="basic-default-fullname"
-                                placeholder="Father Name" name="FatherName">
+                                placeholder="Employee Father Name" name="FatherName">
                         </div>
 
 
@@ -69,13 +69,13 @@
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Employee Phone Number</label>
                             <input required type="number" class="form-control" id="basic-default-fullname"
-                                placeholder="Phone Number" name="PhoneNumber">
+                                placeholder="Employee Phone Number" name="PhoneNumber">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-fullname">Employee Account Number</label>
                             <input required type="number" class="form-control" id="basic-default-fullname"
-                                placeholder="Phone Number" name="Account">
+                                placeholder="Employee Account Number" name="Account">
                         </div>
 
 
@@ -84,6 +84,7 @@
                             <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
                                 placeholder="YYYY-MM-DD" readonly="readonly" name="DateAppointment">
                         </div>
+                        <br>
 
 
                         <div class="md-3">
@@ -108,9 +109,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label" for="collapsible-state6">Employee Description </label>
+                            <label class="form-label" for="basic-default-phone">Employee Salary</label>
+                            <input required type="number" id="basic-default-phone" class="form-control "
+                                placeholder="Salary" name="Salary">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="collapsible-state6">Employee Designation </label>
                             <select id="collapsible-state6" required class="select2 form-select" data-allow-clear="true"
-                                name="Designation">
+                                name="Employee Designation">
                                 <option value="">Select</option>
                                 @foreach ($Designation as $item)
                                     <option value="{{ $item->designations }}">{{ $item->designations }}</option>
@@ -118,11 +125,7 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label" for="basic-default-phone">Employee Salary</label>
-                            <input required type="number" id="basic-default-phone" class="form-control "
-                                placeholder="Salary" name="Salary">
-                        </div>
+
 
                         <div class="mb-3">
                             <label class="form-label" for="collapsible-state3">Employee Divisions </label>

@@ -10,7 +10,7 @@
                 <div class="card-body">
 
                     {{-- @dd($getEmployees) --}}
-                    <form action="{{ route('addEmployeeData') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('edit.employe', $getEmployees->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="employee-name">Employee Name</label>
@@ -89,9 +89,18 @@
                                 value="{{ $getEmployees->JoiningDate }}" readonly="readonly" name="JoiningDate">
                         </div>
 
+
+                        <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Appointment Issue Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                value="{{ $getEmployees->DateAppointment }}" readonly="readonly" name="DateAppointment">
+                        </div>
+                        <br>
+
                         <div class="mb-3">
                             <label class="form-label" for="actual-joining-date">Employee Actual Joined Date</label>
-                            <input type="text" id="actual-joining-date" class="form-control dob-picker flatpickr-input"
+                            <input type="text" id="actual-joining-date"
+                                class="form-control dob-picker flatpickr-input"
                                 value="{{ $getEmployees->ActualJoinedDate }}" readonly="readonly"
                                 name="ActualJoinedDate">
                         </div>
@@ -272,7 +281,7 @@
 
 
 
-                        <button type="button" class="btn btn-primary waves-effect waves-light">Submit </button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Submit </button>
                     </form>
                 </div>
 

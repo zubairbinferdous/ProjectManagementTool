@@ -27,6 +27,11 @@
         thead {
             background-color: #f7f7f7;
             color: rgb(26, 26, 26);
+
+        }
+
+        th {
+            font-weight: 500;
         }
 
         th,
@@ -36,7 +41,7 @@
             border: 1px solid #000000;
             word-wrap: break-word;
             font-size: 10px;
-            font-family: monospace;
+            /* font-family: monospace; */
         }
 
         tbody tr:hover {
@@ -64,9 +69,9 @@
 
         .dataOne,
         .dataTwo {
-            margin-top: 30px;
             /* Optional: adds some space between the two items */
             text-align: center;
+            font-size: 13px;
             /* Centers text inside the containers */
         }
 
@@ -120,15 +125,12 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>NID</th>
-                    <th>Paid Salary</th>
-                    <th>Paid Salary</th>
-                    <th>Paid Salary</th>
-                    <th>Paid Salary</th>
-                    <th>Paid Salary</th>
+                    <th>ক্রোমিক</th>
+                    <th>কর্মচারী নাম</th>
+                    <th>পদবি</th>
+                    <th>কর্মস্থল</th>
+                    <th>হিসাব নাম্বার</th>
+                    <th>অংক</th>
                 </tr>
             </thead>
             <tbody class="body">
@@ -136,20 +138,17 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $item->employeeData->EmployeeName }}</td>
-                        <td>{{ $item->employeeData->PhoneNumber }}</td>
-                        <td>{{ $item->employeeData->NidNumber }}</td>
-                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td>
-                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td>
-                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td>
-                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td>
-                        <td>{{ number_format($item->actualSalary, 2) }} BDT</td>
+                        <td>{{ $item->employeeData->Designation }}</td>
+                        <td>{{ $item->employeeData->Districts }}</td>
+                        <td>{{ $item->employeeData->Account }}</td>
+                        <td>{{ number_format($item->actualSalary) }} BDT</td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr class="total-row">
-                    <td colspan="8" style="text-align: end;"><strong>Total Salary:</strong></td>
-                    <td colspan="1" style="text-align: center;">{{ number_format($totalSalary, 2) }} BDT</td>
+                    <td colspan="4" style="text-align: end;"></td>
+                    <td colspan="2" style="text-align: center;">{{ number_format($totalSalary, 2) }} BDT</td>
                 </tr>
             </tfoot>
         </table>
@@ -162,22 +161,29 @@
     </style>
 
     <div class="row" style="text-align: center; width: 100%;">
-        <table style="width: 100%;" class="not">
+        <table style="width: 100%; margin-top:70px;" class="not">
             <tr>
                 <td style="width: 50%; text-align: center;  ">
-                    <br><br><br>
+
                     <div class="dataOne">
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>মোহাম্মদ নূরুল ইসলাম</p>
+                        <p>ব্যাবস্থাপক</p>
                     </div>
                 </td>
-                <td style="width: 50%; text-align: center; ">
-                    <br><br><br>
+                <td style="width: 50%; text-align: center;  ">
+
+                    <div class="dataOne">
+                        <p>মোহাম্মদ বিলাল হোসেন</p>
+                        <p>ব্যাবস্থাপক পরিচালোক</p>
+                    </div>
+                </td>
+                {{-- <td style="width: 50%; text-align: center; ">
+                    <br><br><br> <br> <br> <br>
                     <div class="dataTwo">
-                        <p>Lorem ipsum dolor sit amet.</p>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>মোহাম্মদ বিলাল হোসেন</p>
+                        <p>ব্যাবস্থাপক পরিচালোক</p>
                     </div>
-                </td>
+                </td> --}}
             </tr>
         </table>
     </div>

@@ -66,6 +66,8 @@ Route::post('/addProjectData', [homeController::class, "addProjectData"])->name(
 Route::get('/allProjectArea', [homeController::class, 'allProject'])->name('allProject');
 Route::get('/getProjectData{id}', [homeController::class, 'getProjectData'])->name('getProjectData');
 Route::get('/getSingleProject{id}', [homeController::class, 'getSingleProject'])->name('getSingleProject');
+Route::post('/edit.project/{id}', [homeController::class, 'editProjectData'])->name('edit.project');
+
 
 
 // employee area
@@ -74,6 +76,7 @@ Route::post('/addEmployeeData', [homeController::class, "addEmployeeData"])->nam
 Route::get('/allEmployeeData', [homeController::class, 'allEmployeeData'])->name('allEmployeeData');
 Route::get('/getEmployeeData{id}', [homeController::class, 'getEmployeeData'])->name('getEmployeeData');
 Route::get('/getSingleEmployee{id}', [homeController::class, 'getSingleEmployee'])->name('getSingleEmployee');
+Route::post('/edit.EmployeeData/{id}', [homeController::class, 'editEmployeData'])->name('edit.employe');
 
 // designation 
 Route::get('/addDesignation', [homeController::class, 'designation'])->name('addDesignation');

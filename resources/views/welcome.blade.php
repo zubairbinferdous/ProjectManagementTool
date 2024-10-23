@@ -152,7 +152,7 @@
                     <!-- Dashboards -->
 
                     @if (Auth::check() && Auth::user()->role == 'admin')
-                        <li class="menu-item">
+                        {{-- <li class="menu-item">
                             <a href="javascript:void(0);" class="menu-link menu-toggle">
                                 <i class="menu-icon tf-icons ti ti-smart-home"></i>
                                 <div data-i18n="Dashboards"> Designation Area</div>
@@ -170,7 +170,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
 
                         <li class="menu-item">
@@ -241,6 +241,26 @@
                                 </li>
                             @endif
 
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards"> Designation Area</div>
+
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('addDesignation') }}" class="menu-link">
+                                    <div data-i18n="Email">Add Designation </div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href=" {{ route('allDesignation') }} " class="menu-link">
+                                    <div data-i18n="Email">All Designation </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

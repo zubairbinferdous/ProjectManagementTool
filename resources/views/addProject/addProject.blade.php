@@ -80,6 +80,14 @@
                         </div>
                         <br>
 
+
+                        <div class="md-3">
+                            <label class="form-label" for="multicol-birthdate">Project End Date</label>
+                            <input type="text" id="multicol-birthdate" class="form-control dob-picker flatpickr-input"
+                                placeholder="YYYY-MM-DD" readonly="readonly" name="ProjectEnd" placeholder="YYYY-MM-DD">
+                        </div>
+                        <br>
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-message">Contract Description</label>
                             <textarea id="basic-default-message" class="form-control" rows="6" placeholder="Contract Description"
